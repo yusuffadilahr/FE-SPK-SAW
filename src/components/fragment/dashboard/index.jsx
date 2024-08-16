@@ -6,12 +6,12 @@ import Bicons from '../../element/icons/Bicons'
 import ProfileIcons from '../../element/icons/profileIcons'
 import { Logout } from '../../../service/auth.service'
 
-const DashboardUser = () => {
+const Dashboard= () => {
 
     const tesCard = [
-        { id: 1, name: 'Data Alternatif', url: '/data-alternatif-user', icons: <Aicons /> },
-        { id: 2, name: 'Data Kriteria', url: '/data-kriteria-user', icons: <Bicons /> },
-        { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-user', icons: <Dicons /> },
+        { id: 1, name: 'Data Alternatif', url: '/data-alternatif-admin', icons: <Aicons /> },
+        { id: 2, name: 'Data Kriteria', url: '/data-kriteria-admin', icons: <Bicons /> },
+        { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-admin', icons: <Dicons /> },
         { id: 4, name: 'Combucha Coffee', url: 'https://www.instagram.com/combuchacoffee/?igshid=YmMyMTA2M2Y%3D', icons: <ProfileIcons /> },
     ]
 
@@ -49,4 +49,4 @@ const DashboardUser = () => {
     )
 }
 
-export default DashboardUser
+export default Dashboard

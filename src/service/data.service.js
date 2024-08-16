@@ -1,11 +1,13 @@
 import axios from "axios"
 
+const username = localStorage.getItem('username')
+
 export const getAlternatifData = (callback) => {
     axios.get('http://localhost:4004/api-v1/kopi/alternatif/', {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -22,7 +24,7 @@ export const singleAlternatifData = (id_alternatif, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     }).then((res) => {
         callback(res.data)
@@ -36,7 +38,7 @@ export const updateData = (id_alternatif, data, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -56,7 +58,7 @@ export const addAlternatifData = (data, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -73,7 +75,7 @@ export const deleteDataAlternatif = (id_alternatif, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -94,7 +96,7 @@ export const deleteAlternatif = (id_alternatif, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     }).then((res) => {
         if (res.data.statusCode === 200) {
@@ -113,7 +115,7 @@ export const getDataKriteria = (callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -130,7 +132,7 @@ export const createDataKriteria = (data, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -151,7 +153,7 @@ export const getKriteriaById = (id_kriteria, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -168,7 +170,7 @@ export const updateDataKriteria = (id_kriteria, data, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -189,7 +191,7 @@ export const deleteDataKriteria = (id_kriteria, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     }).then((res) => {
         if (res.data.statusCode === 200) {
@@ -207,7 +209,7 @@ export const getPenilaianData = (callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -223,7 +225,7 @@ export const bulkCreatePenilaianData = (data, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     }).then((res) => {
         if (res.data.statusCode === 200) {
@@ -243,7 +245,7 @@ export const updatePenilaian = (data, id_nilai_alternatif, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -263,7 +265,7 @@ export const singleDataPenilaian = (id_nilai_alternatif, callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {
@@ -282,7 +284,7 @@ export const getPerhitunganData = (callback) => {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     })
         .then((res) => {

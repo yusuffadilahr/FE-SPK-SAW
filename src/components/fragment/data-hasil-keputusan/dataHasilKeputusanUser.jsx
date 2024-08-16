@@ -47,14 +47,6 @@ const DataHasilKeputusan = () => {
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Hasil Keputusan</h1>
                                     </div>
-                                    {/* <Link to='/add-alternatif-admin'>
-                                        <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                            Tambah Data Alternatif
-                                        </ButtonCustom>
-                                    </Link> */}
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>
                                     <div className='w-full pb-5 flex items-center justify-between'>

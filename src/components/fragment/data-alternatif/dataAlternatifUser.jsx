@@ -1,12 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { Link, useParams } from 'react-router-dom';
-import { deleteAlternatif, getAlternatifData } from '../../../service/data.service';
+import { getAlternatifData } from '../../../service/data.service';
 import Input from '../../element/form/input';
 
-const DataAlternatif = () => {
-    const { id_alternatif } = useParams()
+const DataAlternatifUser = () => {
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const [getAlternatif, setGetAlternatif] = useState([])
@@ -22,24 +20,6 @@ const DataAlternatif = () => {
             setGetAlternatif(res.data)
         })
     }, [])
-
-    const handleDelete = (id_alternatif) => {
-        if (window.confirm('Apakah kamu ingin menghapus data ini?')) {
-            deleteAlternatif(id_alternatif, (status, res) => {
-                if (status) {
-                    const cekData = getAlternatif.find((alt) => alt.id_alternatif === id_alternatif)
-                    if (!cekData) {
-                        setGetAlternatif(getAlternatif)
-                    } else {
-                        setGetAlternatif(getAlternatif.filter(i => (i.id_alternatif !== id_alternatif)))
-                        window.location.reload()
-                    }
-                } else {
-                    console.error('gagallllll', res)
-                }
-            })
-        }
-    }
 
     // const alternatifData = getAlternatif?.map((alt, i) => {
     //     return {
@@ -75,14 +55,6 @@ const DataAlternatif = () => {
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Alternatif</h1>
                                     </div>
-                                    <Link to='/add-alternatif-admin'>
-                                        <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                            Tambah Data Alternatif
-                                        </ButtonCustom>
-                                    </Link>
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>
                                     <div className='w-full pb-5 flex items-center justify-between'>
@@ -96,11 +68,11 @@ const DataAlternatif = () => {
                                             </div>
                                             <div className='flex justify-end items-center text-[11px]'>
                                                 <div className='border flex items-center'>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
-                                                className="size-3 ml-2 flex items-center text-slate-600">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                </svg>
-                                                <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                                                        className="size-3 ml-2 flex items-center text-slate-600">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                    </svg>
+                                                    <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                                 </div>
                                             </div>
                                         </div>
@@ -110,22 +82,13 @@ const DataAlternatif = () => {
                                             <tr className='border-b'>
                                                 <th className='p-1 border'>{headerTable.no}</th>
                                                 <th className='p-1 border'>{headerTable.alternatif}</th>
-                                                <th className='p-1 border'>{headerTable.act}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {paginatedData.map((body, i) => (
                                                 <tr key={i} className='hover:bg-gray-50'>
-                                                    <td className='p-1 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
-                                                    <td className='p-1 border'>{body.alternatif}</td>
-                                                    <td className='p-1 border'>
-                                                        <Link to={`/data-alternatif-admin/${body.id_alternatif}`}>
-                                                            <ButtonCustom>Ubah</ButtonCustom>
-                                                        </Link>
-                                                        <ButtonCustom
-                                                            color='bg-red-600 hover:bg-red-700 m-1'
-                                                            onClick={() => handleDelete(body.id_alternatif)}>Hapus</ButtonCustom>
-                                                    </td>
+                                                    <td className='p-2 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
+                                                    <td className='p-2 border'>{body.alternatif}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -165,4 +128,4 @@ const DataAlternatif = () => {
     )
 }
 
-export default DataAlternatif
+export default DataAlternatifUser

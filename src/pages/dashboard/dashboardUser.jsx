@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react'
 import NavbarTab from '../../components/element/navigation/navbar/navbar'
 import Sidebar from '../../components/element/navigation/sidebar/sidebar'
-import Dashboard from '../../components/fragment/dashboard'
+import DashboardUser from '../../components/fragment/dashboard/dashboard'
 
-const DashboardPage = () => {
+const DashboardUserPage = () => {
   return (
     <Fragment>
-      <Dashboard />
+      <DashboardUser />
       <Sidebar />
-      <NavbarTab judul='Dashboard'/>
+      <NavbarTab judul='Dashboard User'/>
     </Fragment>
   )
 }
 
-export default DashboardPage
+export default DashboardUserPage

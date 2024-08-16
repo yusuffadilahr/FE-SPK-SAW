@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { Link } from 'react-router-dom'
-import { getPenilaianData, getPerhitunganData } from '../../../service/data.service'
+import { getPenilaianData } from '../../../service/data.service'
 
-const DataHasilKeputusan = () => {
+const PenilaianAlternatifUser = () => {
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const [penilaian, setPenilaian] = useState([])
-
-    const headerTable = {
-        no: 'No',
-        alternatif: 'Daftar Alternatif Biji Kopi',
-        hasil: 'Hasil',
-        rank: 'Ranking'
-    }
+    const headerTable = (
+        {
+            no: 'No',
+            alternatif: 'Alternatif',
+            kriteria: 'Kriteria',
+            nilai: 'Nilai',
+        }
+    )
 
     useEffect(() => {
-        getPerhitunganData((res) => {
-            setPenilaian(res.data.data.perangkingan)
+        getPenilaianData((res) => {
+            const penilaianData = res.data
+            setPenilaian(penilaianData)
         })
     }, [])
 
@@ -30,8 +30,8 @@ const DataHasilKeputusan = () => {
         setCurrentPage(page)
     }
 
-    const handleEntriesChange = (e) => {
-        setEntriesPerPage(parseInt(e.target.value))
+    const handleEntriesChange = (event) => {
+        setEntriesPerPage(parseInt(event.target.value))
         setCurrentPage(1)
     }
     return (
@@ -45,22 +45,15 @@ const DataHasilKeputusan = () => {
                             <div className='bg-white'>
                                 <div className='mb-3'>
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
-                                        <h1><span className='font-bold mr-1'>Home /</span>Data Hasil Keputusan</h1>
+                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Nilai Keputusan</h1>
                                     </div>
-                                    {/* <Link to='/add-alternatif-admin'>
-                                        <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                            Tambah Data Alternatif
-                                        </ButtonCustom>
-                                    </Link> */}
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>
                                     <div className='w-full pb-5 flex items-center justify-between'>
                                         <div className='flex items-center'>
                                             <Label htmlFor='entries-per-page' style='mr-2 text-[11px]'>Show</Label>
-                                            <select id='entries-per-page' value={entriesPerPage} onChange={handleEntriesChange} className='border p-1 text-[11px]'>
+                                            <select id='entries-per-page' className='border p-1 text-[11px]'
+                                                value={entriesPerPage} onChange={handleEntriesChange}>
                                                 <option value={5}>5</option>
                                             </select>
                                             <span className='ml-2 text-[11px]'>entries</span>
@@ -71,17 +64,17 @@ const DataHasilKeputusan = () => {
                                             <tr className='border-b'>
                                                 <th className='p-1 border'>{headerTable.no}</th>
                                                 <th className='p-1 border'>{headerTable.alternatif}</th>
-                                                <th className='p-1 border'>{headerTable.hasil}</th>
-                                                <th className='p-1 border'>{headerTable.rank}</th>
+                                                <th className='p-1 border'>{headerTable.kriteria}</th>
+                                                <th className='p-1 border'>{headerTable.nilai}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {paginatedData.map((body, i) => (
-                                                <tr key={i} className='hover:bg-gray-50'>
-                                                    <td className='p-2 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
+                                            {paginatedData.map((body, index) => (
+                                                <tr key={index} className='hover:bg-gray-50'>
+                                                    <td className='p-2 border'>{(currentPage - 1) * entriesPerPage + index + 1}</td>
                                                     <td className='p-2 border'>{body.alternatif}</td>
-                                                    <td className='p-2 border'>{body.hasil}</td>
-                                                    <td className='p-2 border'>{body.rangking}</td>
+                                                    <td className='p-2 border'>{body.kriteria}</td>
+                                                    <td className='p-2 border'>{body.nilai_alternatif}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -94,18 +87,18 @@ const DataHasilKeputusan = () => {
                                             <div className='flex justify-end items-end'>
                                                 <ButtonCustom
                                                     disabled={currentPage === 1}
-                                                    onClick={() => handlePageChange(currentPage - 1)}
                                                     color='bg-white border hover:bg-black mr-2 rounded disabled:bg-gray-200'
                                                     text='text-black hover:text-white disabled:text-black'
-                                                    bulat='rounded-xl'>
+                                                    bulat='rounded-xl'
+                                                    onClick={() => handlePageChange(currentPage - 1)}>
                                                     Previous
                                                 </ButtonCustom>
                                                 <ButtonCustom
                                                     disabled={currentPage === totalPages}
-                                                    onClick={() => handlePageChange(currentPage + 1)}
                                                     color='bg-white border hover:bg-black mr-2 rounded disabled:bg-gray-200'
                                                     text='text-black hover:text-white disabled:text-black'
-                                                    bulat='rounded-xl'>
+                                                    bulat='rounded-xl'
+                                                    onClick={() => handlePageChange(currentPage + 1)}>
                                                     Next
                                                 </ButtonCustom>
                                             </div>
@@ -121,4 +114,4 @@ const DataHasilKeputusan = () => {
     )
 }
 
-export default DataHasilKeputusan
+export default PenilaianAlternatifUser

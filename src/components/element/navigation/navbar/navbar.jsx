@@ -9,6 +9,7 @@ import UpIcons from '../../icons/upIcons'
 import DownIcons from '../../icons/downIcons'
 import NavbarLinks from './navbarLinks'
 import { Logout } from '../../../../service/auth.service'
+import ButtonCustom from '../../button/button'
 
 const NavbarTab = (props) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -18,6 +19,9 @@ const NavbarTab = (props) => {
     const handleClick = () => {
         setIsOpen(!isOpen)
     }
+
+    const roleName = localStorage.getItem('username')
+    const roleAdmin = localStorage.getItem('role')
 
     const handleLogout = (e) => {
         e.preventDefault()
@@ -29,6 +33,8 @@ const NavbarTab = (props) => {
             if (status) {
                 navigate('/')
                 localStorage.removeItem('secretKey')
+                localStorage.removeItem('role')
+                localStorage.removeItem('username')
                 console.log('Ini respon berhasil', res)
             } else {
                 console.log('Errorrrr', res)
@@ -42,31 +48,54 @@ const NavbarTab = (props) => {
                     <div className='flex-1 flex justify-end items-center pr-5'>
                         {/* <ButtonCustom text='text-black' color='bg-white border hover:bg-black hover:text-white' bulat='rounded-xl'>Logout</ButtonCustom> */}
                         <button onClick={handleClick} className='flex items-center'>
-                            <p>username</p>
+                            <p>{roleName}</p>
                             {isOpen ?
                                 <UpIcons />
                                 :
                                 <DownIcons />
                             }
+
                             {isOpen && (
                                 <div className='absolute mt-80 z-20 right-0 w-72 h-72 bg-white shadow rounded-lg'>
                                     <div className='p-5 flex w-full'>
                                         <ul className='w-full'>
-                                            <NavbarLinks title='Dashboard Jos' url='/dashboard-admin'>
-                                                <HomeIcons style='size-4 mr-2' />
-                                            </NavbarLinks>
-                                            <NavbarLinks title='Data Alternatif Jos' url='/data-alternatif-admin'>
-                                                <Aicons size='size-4 mr-2' />
-                                            </NavbarLinks>
-                                            <NavbarLinks title='Data Kriteria Jos' url='/data-kriteria-admin'>
-                                                <Bicons size='size-4 mr-2' />
-                                            </NavbarLinks>
-                                            <NavbarLinks title='Data Hasil Keputusan Jos' url='/data-hasil-admin'>
-                                                <Eicons style='size-4 mr-2' />
-                                            </NavbarLinks>
-                                            <button onClick={handleLogout}>
-                                                logout
-                                            </button>
+                                            {roleAdmin === 'admin' ? (
+                                                <>
+                                                    <NavbarLinks title='Dashboard' url='/dashboard-admin'>
+                                                        <HomeIcons style='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                    <NavbarLinks title='Data Alternatif' url='/data-alternatif-admin'>
+                                                        <Aicons size='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                    <NavbarLinks title='Data Kriteria' url='/data-kriteria-admin'>
+                                                        <Bicons size='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                    <NavbarLinks title='Data Hasil Keputusan' url='/data-hasil-admin'>
+                                                        <Eicons style='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                </>
+                                            ) : roleAdmin === 'user' ? (
+                                                <>
+                                                    <NavbarLinks title='Dashboard' url='/dashboard-user'>
+                                                        <HomeIcons style='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                    <NavbarLinks title='Data Alternatif' url='/data-alternatif-user'>
+                                                        <Aicons size='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                    <NavbarLinks title='Data Kriteria' url='/data-kriteria-user'>
+                                                        <Bicons size='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                    <NavbarLinks title='Hasil Keputusan' url='/data-hasil-user'>
+                                                        <Eicons style='size-4 mr-2' />
+                                                    </NavbarLinks>
+                                                </>
+                                            ) : null}
+                                            <ButtonCustom color='border bg-white hover:bg-black flex items-center justify-center w-full'
+                                                text='text-black hover:text-white'
+                                                onClick={handleLogout}>
+                                                <LogoutIcons size='size-4' />
+                                                Logout
+                                            </ButtonCustom>
                                         </ul>
                                     </div>
                                 </div>

@@ -23,17 +23,27 @@ const FormLogin = () => {
       if (status) {
         const { role } = res.data
         if (role === "admin") {
+          localStorage.setItem('username', data.username)
+          localStorage.setItem('role', res.data.role)
           localStorage.setItem("secretKey", res.data.secret_key)
           console.log("Kamu adalah admin", res.message)
           alert("Kamu adalah admin")
           navigate('/dashboard-admin')
+          window.location.reload()
         } else if (role === "user") {
+          localStorage.setItem('username', data.username)
+          localStorage.setItem('role', res.data.role)
           localStorage.setItem("secretKey", res.data.secret_key)
           console.log("Kamu adalah user")
           alert("kamu adalah user")
           navigate('/dashboard-user')
+          window.location.reload()
         } else {
           setLoginFail(res.message)
+          alert('Role tidak dikenali')
+          localStorage.removeItem('username')
+          localStorage.removeItem('role')
+          localStorage.removeItem('secretKey')
           console.log('Role tidak dikenali')
         }
       } else {

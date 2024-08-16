@@ -32,11 +32,12 @@ export const Register = (data, callback) => {
 }
 
 export const Logout = (data, callback) => {
+    const username = localStorage.getItem('username')
     axios.post('http://localhost:4004/api-v1/users/logout', data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
-            "username": "admin123"
+            "username": username
         }
     }).then((res) => {
         if (res.data.statusCode === 200) {

@@ -17,6 +17,14 @@ import DataHasilKeputusanPage from './pages/data-hasil-keputusan/admin/index'
 import RegisterPage from './pages/auth/register'
 import ProsesPerhitunganPage from './pages/perhitungan'
 import EditPenilaianAlternatifPage from './pages/penilaian-alternatif/admin/editPenilaianAlternatif'
+import DashboardUser from './pages/dashboard/dashboardUser'
+import DataAlternatifPageUser from './pages/data-alternatif/user'
+import DataKriteriaPageUser from './pages/data-kriteria/user'
+import PenilaianAlternatifPageUser from './pages/penilaian-alternatif/user'
+import ProsesPerhitunganPageUser from './pages/perhitungan/perhitunganUser'
+import DataHasilKeputusanPageUser from './pages/data-hasil-keputusan/user'
+import DashboardPage from './pages/dashboard'
+import DashboardUserPage from './pages/dashboard/dashboardUser'
 
 const isLoggin = () => {
   return !!localStorage.getItem('secretKey')
@@ -35,7 +43,7 @@ const router = createBrowserRouter([
   // Route Admin
   { path: '/', element: <BackLoginAdmin><LoginPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
   { path: '/register', element: <RegisterPage />, errorElement: <ErrorPage /> },
-  { path: '/dashboard-admin', element: <PrivatePage><Dashboard /></PrivatePage>, errorElement: <ErrorPage /> },
+  { path: '/dashboard-admin', element: <PrivatePage><DashboardPage /></PrivatePage>, errorElement: <ErrorPage /> },
   { path: '/data-alternatif-admin', element: <DataAlternatifPage />, errorElement: <ErrorPage /> },
   { path: '/data-alternatif-admin/:id_alternatif', element: <EditDataAlternatifPage />, errorElement: <ErrorPage /> },
   { path: '/add-alternatif-admin', element: <AddDataAlternatifPage />, errorElement: <ErrorPage /> },
@@ -49,16 +57,12 @@ const router = createBrowserRouter([
   { path: '/proses-perhitungan-admin', element: <ProsesPerhitunganPage />, errorElement: <ErrorPage /> },
 
   // Route User
-  // { path: '/data-alternatif-admin', element: <DataAlternatifPage />, errorElement: <ErrorPage /> },
-  // { path: '/data-alternatif-admin/:id', element: <EditDataAlternatifPage />, errorElement: <ErrorPage /> },
-  // { path: '/add-alternatif-admin', element: <AddDataAlternatifPage />, errorElement: <ErrorPage /> },
-  // { path: '/data-kriteria-admin', element: <DataKriteriaPage />, errorElement: <ErrorPage /> },
-  // { path: '/data-kriteria-admin/:id', element: <EditDataKriteriaPage />, errorElement: <ErrorPage /> },
-  // { path: '/add-kriteria-admin', element: <AddDataKriteriaPage />, errorElement: <ErrorPage /> },
-  // { path: '/penilaian-alternatif-admin', element: <PenilaianAlternatifPage />, errorElement: <ErrorPage /> },
-  // { path: '/add-penilaian-alternatif-admin', element: <AddPenilaianAlternatifPage />, errorElement: <ErrorPage /> },
-  // { path: '/data-hasil-admin', element: <DataHasilKeputusanPage />, errorElement: <ErrorPage /> },
-  // { path: '/proses-perhitungan-admin', element: <ProsesPerhitunganPage />, errorElement: <ErrorPage /> },
+  { path: '/dashboard-user', element: <PrivatePage><DashboardUserPage /></PrivatePage>, errorElement: <ErrorPage /> },
+  { path: '/data-alternatif-user', element: <DataAlternatifPageUser />, errorElement: <ErrorPage /> },
+  { path: '/data-kriteria-user', element: <DataKriteriaPageUser />, errorElement: <ErrorPage /> },
+  { path: '/penilaian-alternatif-user', element: <PenilaianAlternatifPageUser />, errorElement: <ErrorPage /> },
+  { path: '/proses-perhitungan-user', element: <ProsesPerhitunganPageUser />, errorElement: <ErrorPage /> },
+  { path: '/data-hasil-user', element: <DataHasilKeputusanPageUser />, errorElement: <ErrorPage /> },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

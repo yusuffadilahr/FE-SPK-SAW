@@ -2,7 +2,7 @@ import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
 import { Fragment, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { singleDataPenilaian, updatePenilaian } from '../../../service/data.service'
 
 
@@ -10,37 +10,35 @@ const EditPenilaianAlternatif = () => {
     const { id_nilai_alternatif } = useParams()
     const [kriteria, setKriteria] = useState({})
     const [alternatif, setAlternatif] = useState([])
-    const [nilaiAlternatif, setNilaiAlternatif] = useState({})
-
+    const [nilaiAlternatif, setNilaiAlternatif] = useState('')
+    const navigate =useNavigate()
 
     useEffect(() => {
         singleDataPenilaian(id_nilai_alternatif, (res) => {
             setAlternatif(res.data)
             setKriteria(res.data)
-            setNilaiAlternatif(res.data)
-            console.log(res.data)
+            setNilaiAlternatif(res.data.nilai_alternatif)
+            console.log("cek 1", res.data.nilai_alternatif)
         })
     }, [id_nilai_alternatif])
 
-    const handleNilai = (e, i) => {
-        setNilaiAlternatif(e.target.value)
-        console.log('consol i', i)
+    const handleNilai = (e) => {
+            setNilaiAlternatif(e.target.value)
     }
-    console.log('bwajingann', handleNilai)
+    console.log("nilai alternatif : ", nilaiAlternatif);
+    const data = {
+        nilai_alternatif: nilaiAlternatif
+    }
+
 
     const handleEdit = (e) => {
         e.preventDefault()
-console.log('errrrr', nilaiAlternatif)
-        const data = {
-            alternatif: alternatif.alternatif,
-            kriteria: kriteria.kriteria,
-            nilai_alternatif: nilaiAlternatif.nilai_alternatif
-        }
-        console.log('errrr',data)
 
         updatePenilaian(data, id_nilai_alternatif, (status, res) => {
             if (status) {
                 console.log(res.data)
+                alert('Berhasil mengubah data')
+                navigate('/penilaian-alternatif-admin')
             } else {
                 console.error(res.data)
             }
@@ -55,20 +53,18 @@ console.log('errrrr', nilaiAlternatif)
                 <div className='flex justify-center pt-20'>
                     <div className='w-full p-10'>
                         <div className='w-full h-fit pl-5 bg-white border p-2'>
+
                             <h1 className='font-bold mt-5'>Tambah Nilai Keputusan</h1>
                             <div className='flex pt-10 h-full'>
                                 <form onSubmit={handleEdit} className='w-full'>
                                     <div className='w-full'>
-                                        <Label htmlFor='alternatif'>Tambah Alternatif</Label>
-                                        <select name="alternatif" id="alternatif" className='w-full border pl-3 p-1 mb-5 text-sm'>
-                                            <option className='w-full border'>-- Select Option --</option>
-                                            <Fragment>
-                                                <option
-                                                    key={alternatif.id_alternatif}
-                                                    onChange={(e) => handleSelectAlternatif(alternatif.alternatif, e.target.value)}
-                                                    className='w-full border'>{alternatif.alternatif}</option>
-                                            </Fragment>
-                                        </select>
+                                        <Label htmlFor='alternatif'>Update Alternatif</Label>
+                                        <div className='w-full border pl-3 p-1 mb-5 text-sm'>
+                                            <div className='grid grid-cols-2 pt-4 w-full'>
+                                                <Label htmlFor='kriteria'>Alternatif</Label>
+                                                <Label htmlFor='weight-kriteria'>{kriteria.alternatif}</Label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className='w-full pr-10 p-2 border pl-10'>
                                         <div className='grid grid-cols-2 pt-4 w-full'>
@@ -81,14 +77,19 @@ console.log('errrrr', nilaiAlternatif)
                                                     <Label htmlFor='kriteria'>{kriteria.kriteria}</Label>
                                                 </div>
                                                 <div className='justify-end flex w-full'>
-                                                    <select name={`kriteria-${nilaiAlternatif.id_nilai_alternatif}`}
-                                                        id={`kriteria-${nilaiAlternatif.id_nilai_alternatif}`}
-                                                        onChange={(e) => handleNilai(nilaiAlternatif.nilai_alternatif, e.target.value)}
+                                                    <select id='selectOption' value={nilaiAlternatif.nilai_alternatif} onChange={handleNilai}
                                                         className='w-full border pl-3 p-1 mb-5 text-sm'>
                                                         <option className='w-full border'>-- Select Option --</option>
-                                                        {[...Array(10).keys()].map(i => (
-                                                            <option key={i + 1} value={i + 1} className='w-full border'>{i + 1}</option>
-                                                        ))}
+                                                        <option value={1}>1</option>
+                                                        <option value={2}>2</option>
+                                                        <option value={3}>3</option>
+                                                        <option value={4}>4</option>
+                                                        <option value={5}>5</option>
+                                                        <option value={6}>6</option>
+                                                        <option value={7}>7</option>
+                                                        <option value={8}>8</option>
+                                                        <option value={9}>9</option>
+                                                        <option value={10}>10</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -122,5 +123,3 @@ console.log('errrrr', nilaiAlternatif)
 }
 
 export default EditPenilaianAlternatif
-
-

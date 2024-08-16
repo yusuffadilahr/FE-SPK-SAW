@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Input = (props) => {
-    const { type, name, placeholder, autoComplete, value } = props
+    const { type, name, placeholder, autoComplete, value, border = 'border', edit = ' w-full px-2 text-xs py-2 mb-5' } = props
     return (
-        <input type={type} name={name} className='border w-full px-2 text-xs py-2 mb-5'
+        <input type={type} name={name} className={`${border} ${edit}`}
             placeholder={placeholder}
             required autoComplete={autoComplete} value={value} />
     )
