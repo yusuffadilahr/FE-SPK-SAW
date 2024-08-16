@@ -4,6 +4,8 @@ import Label from '../../element/form/label'
 import { Link, useParams } from 'react-router-dom';
 import { deleteAlternatif, getAlternatifData } from '../../../service/data.service';
 import Input from '../../element/form/input';
+import SearchIcons from '../../element/icons/searchIcons';
+import AddIcons from '../../element/icons/addIcons';
 
 const DataAlternatif = () => {
     const { id_alternatif } = useParams()
@@ -77,9 +79,7 @@ const DataAlternatif = () => {
                                     </div>
                                     <Link to='/add-alternatif-admin'>
                                         <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
+                                            <AddIcons />
                                             Tambah Data Alternatif
                                         </ButtonCustom>
                                     </Link>
@@ -96,10 +96,7 @@ const DataAlternatif = () => {
                                             </div>
                                             <div className='flex justify-end items-center text-[11px]'>
                                                 <div className='border flex items-center'>
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
-                                                className="size-3 ml-2 flex items-center text-slate-600">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                </svg>
+                                                <SearchIcons />
                                                 <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                                 </div>
                                             </div>

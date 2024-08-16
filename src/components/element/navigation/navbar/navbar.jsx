@@ -10,6 +10,7 @@ import DownIcons from '../../icons/downIcons'
 import NavbarLinks from './navbarLinks'
 import { Logout } from '../../../../service/auth.service'
 import ButtonCustom from '../../button/button'
+import ProfileIcons from '../../icons/profileIcons'
 
 const NavbarTab = (props) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -48,7 +49,10 @@ const NavbarTab = (props) => {
                     <div className='flex-1 flex justify-end items-center pr-5'>
                         {/* <ButtonCustom text='text-black' color='bg-white border hover:bg-black hover:text-white' bulat='rounded-xl'>Logout</ButtonCustom> */}
                         <button onClick={handleClick} className='flex items-center'>
-                            <p>{roleName}</p>
+                        <div className='flex items-center text-slate-800 hover:text-slate-400'>
+                            <ProfileIcons size='w-4 mr-1'/>
+                        <p className='font-semibold'>{roleName}</p>
+                        </div>
                             {isOpen ?
                                 <UpIcons />
                                 :
