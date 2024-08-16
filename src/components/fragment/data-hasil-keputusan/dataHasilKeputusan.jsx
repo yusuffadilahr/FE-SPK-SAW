@@ -4,6 +4,7 @@ import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import { Link } from 'react-router-dom'
 import { getPenilaianData, getPerhitunganData } from '../../../service/data.service'
+import Input from '../../element/form/input'
 
 const DataHasilKeputusan = () => {
     const [entriesPerPage, setEntriesPerPage] = useState(5)
@@ -47,23 +48,26 @@ const DataHasilKeputusan = () => {
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Hasil Keputusan</h1>
                                     </div>
-                                    {/* <Link to='/add-alternatif-admin'>
-                                        <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                            Tambah Data Alternatif
-                                        </ButtonCustom>
-                                    </Link> */}
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>
                                     <div className='w-full pb-5 flex items-center justify-between'>
-                                        <div className='flex items-center'>
-                                            <Label htmlFor='entries-per-page' style='mr-2 text-[11px]'>Show</Label>
-                                            <select id='entries-per-page' value={entriesPerPage} onChange={handleEntriesChange} className='border p-1 text-[11px]'>
-                                                <option value={5}>5</option>
-                                            </select>
-                                            <span className='ml-2 text-[11px]'>entries</span>
+                                        <div className='grid grid-cols-2 w-full'>
+                                            <div className='flex items-center justify-start'>
+                                                <Label htmlFor='entries-per-page' style='mr-2 text-[11px]'>Show</Label>
+                                                <select id='entries-per-page' value={entriesPerPage} onChange={handleEntriesChange} className='border p-1 text-[11px]'>
+                                                    <option value={5}>5</option>
+                                                </select>
+                                                <span className='ml-2 text-[11px]'>entries</span>
+                                            </div>
+                                            <div className='flex justify-end items-center text-[11px]'>
+                                                <div className='border flex items-center'>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                                                        className="size-3 ml-2 flex items-center text-slate-600">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                    </svg>
+                                                    <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <table className='w-full text-sm text-center'>

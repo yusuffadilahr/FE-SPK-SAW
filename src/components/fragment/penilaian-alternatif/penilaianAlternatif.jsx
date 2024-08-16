@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import { Link } from 'react-router-dom'
-import { getAlternatifData, getDataKriteria, getPenilaianData } from '../../../service/data.service'
+import { deletePenilaianById, getAlternatifData, getDataKriteria, getPenilaianData } from '../../../service/data.service'
 import Input from '../../element/form/input'
 
 const PenilaianAlternatif = () => {
@@ -49,6 +49,20 @@ const PenilaianAlternatif = () => {
             setPenilaian(penilaianData)
         })
     }, [])
+
+    // const handleDeletPenilaianById = (id_nilai_alternatif) => {
+    //     if (window.confirm('Apakah anda yakin ingin menghapus data ini?')) {
+    //         deletePenilaianById(id_nilai_alternatif, (status, res) => {
+    //             setPenilaian(penilaian.map((i) => i.id_nilai_alternatif === id_nilai_alternatif))
+    //             if (status) {
+    //                 console.log(res.data)
+    //             }
+    //             else {
+    //                 console.error(res.data)
+    //             }
+    //         })
+    //     }
+    // }
 
     const totalPages = Math.ceil(penilaian.length / entriesPerPage)
     const paginatedData = penilaian.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
@@ -125,7 +139,7 @@ const PenilaianAlternatif = () => {
                                                         <Link to={`/ubah-penilaian-admin/${body.id_nilai_alternatif}`}>
                                                             <ButtonCustom>Ubah</ButtonCustom>
                                                         </Link>
-                                                        <ButtonCustom color='bg-red-600 hover:bg-red-700 m-1'>Hapus</ButtonCustom>
+                                                        {/* <ButtonCustom onClick={handleDeletPenilaianById} color='bg-red-600 hover:bg-red-700 m-1'>Hapus</ButtonCustom> */}
                                                     </td>
                                                 </tr>
                                             ))}

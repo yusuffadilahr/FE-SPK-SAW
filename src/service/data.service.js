@@ -277,7 +277,25 @@ export const singleDataPenilaian = (id_nilai_alternatif, callback) => {
 }
 
 
-// delete penilaian
+export const deletePenilaianById = (id_nilai_alternatif, callback) => {
+    axios.delete(`http://localhost:4004/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
+            "username": username
+        }
+    })
+        .then((res) => {
+            if (res.data.statusCode === 200) {
+                callback(true, res.data)
+            } else {
+                callback(false, res.data)
+            }
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+}
 
 export const getPerhitunganData = (callback) => {
     axios.get('http://localhost:4004/api-v1/kopi/proses-perhitungan', {
