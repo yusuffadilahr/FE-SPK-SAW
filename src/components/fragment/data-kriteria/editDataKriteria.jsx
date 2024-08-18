@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getKriteriaById, updateDataKriteria } from '../../../service/data.service'
 
 const EditDataKriteria = () => {
+    const [isKet, setIsKet] = useState('benefit')
     const { id_kriteria } = useParams()
     const [kriteriaById, setKriteriaById] = useState([])
+    const navigate = useNavigate()
+
+    const handleOption = (e) => {
+        setIsKet(e.target.value)
+    }
 
     useEffect(() => {
         getKriteriaById(id_kriteria, (res) => {
@@ -22,12 +28,13 @@ const EditDataKriteria = () => {
         const data = {
             kriteria: e.target.kriteria.value,
             bobot_kriteria: e.target.bobot.value,
-            keterangan_kriteria: e.target.keterangan.value
+            keterangan_kriteria: isKet
         }
 
         updateDataKriteria(id_kriteria, data, (status, res) => {
             if (status) {
                 alert(res.message)
+                navigate('/data-kriteria-admin')
             }
             else {
                 alert(res.message)
@@ -52,7 +59,11 @@ const EditDataKriteria = () => {
                                         <Label htmlFor='bobot'>Bobot Kriteria</Label>
                                         <Input placeholder={kriteriaById.bobot_kriteria} name='bobot' type='number' />
                                         <Label htmlFor='keterangan'>Keterangan Kriteria</Label>
-                                        <Input placeholder={kriteriaById.keterangan_kriteria} name='keterangan' type='text' />
+                                        <select name="keterangan_kriteria" id="keterangan_kriteria" onChange={handleOption} className='w-full py-1 border text-sm pl-2 mb-5'>
+                                            <option value="">-- Select Option --</option>
+                                            <option value="benefit">benefit</option>
+                                            <option value="cost">cost</option>
+                                        </select>
                                         <div className='flex pb-10 justify-end'>
                                             <ButtonCustom
                                                 type='submit'

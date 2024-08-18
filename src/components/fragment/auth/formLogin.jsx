@@ -53,7 +53,7 @@ const FormLogin = () => {
   }
   return (
     <div className='w-full h-screen flex'>
-      <div className='w-full h-full bg-white flex justify-center items-center'>
+      <div className='w-full h-full bg-slate-100 flex justify-center items-center'>
         <div className='w-96 h-96 border shadow-lg rounded-xl flex items-center animate-flip-down bg-white'>
           <div className='w-full'>
             <h1 className='font-semibold pl-6 text-xl'>Login</h1>

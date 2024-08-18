@@ -2,15 +2,17 @@ import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
 import { Fragment, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { bulkCreatePenilaianData, getAlternatifData, getDataKriteria } from '../../../service/data.service'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { bulkCreatePenilaianData, getAlternatifData, getDataKriteria, singleNilaiAlternatif } from '../../../service/data.service'
 
 
 const AddPenilaianAlternatif = () => {
+    const { id_alternatif } = useParams()
     const [kriteria, setKriteria] = useState([])
     const [alternatif, setAlternatif] = useState([])
     const [selectedAlternatif, setSelectedAlternatif] = useState(null)
     const [bobotKriteria, setBobotKriteria] = useState({})
+    const [isAlternatif, setIsAlternatif] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -21,6 +23,19 @@ const AddPenilaianAlternatif = () => {
             setAlternatif(res.data)
         })
     }, [])
+
+    useEffect(() => {
+        if (selectedAlternatif) {  // Pastikan selectedAlternatif memiliki nilai
+            singleNilaiAlternatif(selectedAlternatif, (status, res) => {
+                if (status) {
+                    setIsAlternatif(res.data.data)  // Update state dengan data yang diterima
+                    console.log('Data Alternatif:', res.data.data);
+                } else {
+                    console.log('Error:', res);
+                }
+            });
+        }
+    }, [selectedAlternatif]);
 
     // const updateKriteria = kriteria.map((krits) => {
     //     return {
@@ -43,6 +58,8 @@ const AddPenilaianAlternatif = () => {
             [idKriteria]: value
         }))
     }
+
+    console.log('tesssss:', selectedAlternatif);
 
     const handleAddPenilaianData = (e) => {
         e.preventDefault()
@@ -112,7 +129,8 @@ const AddPenilaianAlternatif = () => {
                                                             id={`kriteria-${krit.id_kriteria}`}
                                                             onChange={(e) => handleKriteria(krit.id_kriteria, e.target.value)}
                                                             className='w-full border pl-3 p-1 mb-5 text-sm'>
-                                                            <option className='w-full border'>-- Select Option --</option>
+                                                            <option className='w-full border' value={1}>1</option> 
+                                                            {/* Helpppp gy */}
                                                             {[...Array(10).keys()].map(i => (
                                                                 <option key={i + 1} value={i + 1} className='w-full border'>{i + 1}</option>
                                                             ))}

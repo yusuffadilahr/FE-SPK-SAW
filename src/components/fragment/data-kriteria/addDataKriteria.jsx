@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
@@ -6,6 +6,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { createDataKriteria } from '../../../service/data.service'
 
 const AddDataKriteria = () => {
+    const [isKet, setIsKet] = useState('benefit')
+
+    const handleOption = (e) => {
+        setIsKet(e.target.value)
+    }
+
     const navigate = useNavigate()
     const handleAddKriteria = (e) => {
         e.preventDefault()
@@ -13,7 +19,7 @@ const AddDataKriteria = () => {
         const data = {
             kriteria: e.target.kriteria.value,
             bobot_kriteria: e.target.bobot.value,
-            keterangan_kriteria: e.target.keterangan.value
+            keterangan_kriteria: isKet
         }
 
         createDataKriteria(data, (status, res) => {
@@ -25,6 +31,8 @@ const AddDataKriteria = () => {
             }
         })
     }
+
+
     return (
         <div className='flex justify-center items-center w-full h-screen absolute'>
             <div className='w-1/6 flex h-screen'>
@@ -42,7 +50,11 @@ const AddDataKriteria = () => {
                                         <Label htmlFor='bobot'>Bobot Kriteria</Label>
                                         <Input placeholder='Tambah Bobot Kriteria' name='bobot' type='number' />
                                         <Label htmlFor='keterangan'>Keterangan</Label>
-                                        <Input placeholder='Tambah Keterangan Kriteria' name='keterangan' type='text' />
+                                        <select name="keterangan_kriteria" onChange={handleOption} className='w-full border text-sm py-1 pl-2 mb-5'>
+                                            <option value="">-- Select Option --</option>
+                                            <option value="benefit">benefit</option>
+                                            <option value="cost">cost</option>
+                                        </select>
                                         <div className='flex pb-10 justify-end'>
                                             <ButtonCustom
                                                 type='submit'
