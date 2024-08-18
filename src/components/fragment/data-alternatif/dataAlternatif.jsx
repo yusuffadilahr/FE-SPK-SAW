@@ -37,7 +37,7 @@ const DataAlternatif = () => {
                         window.location.reload()
                     }
                 } else {
-                    console.error('gagallllll', res)
+                    console.error('Gagal', res)
                 }
             })
         }

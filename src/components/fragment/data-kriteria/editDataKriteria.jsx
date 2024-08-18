@@ -18,7 +18,6 @@ const EditDataKriteria = () => {
     useEffect(() => {
         getKriteriaById(id_kriteria, (res) => {
             setKriteriaById(res.data)
-            console.log(res.data)
         })
     }, [id_kriteria])
 

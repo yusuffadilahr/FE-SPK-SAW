@@ -136,7 +136,6 @@ export const createDataKriteria = (data, callback) => {
         }
     })
         .then((res) => {
-            console.log(res)
             if (res.data.statusCode === 200) {
                 return callback(true, res)
             } else {

@@ -13,8 +13,6 @@ const EditDataAlternatif = () => {
     useEffect(() => {
         singleAlternatifData(id_alternatif, (data) => {
             setSingleAlternatif(data.data.alternatif)
-            console.log(data.data.alternatif)
-            console.log(id_alternatif)
         })
     }, [id_alternatif])
 

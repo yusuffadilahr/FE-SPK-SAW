@@ -19,7 +19,6 @@ const ProsesPerhitungan = () => {
     useEffect(() => {
         getPerhitunganData((res) => {
             setDataProductThdKriteria(res.data.data.data_product_terhadap_kriteria)
-            console.log(res.data.data)
             if (res.data.statusCode === 400) {
                 alert(res.data.message)
                 alert('Harap isi data penilaian alternatif terlebih dahulu')
