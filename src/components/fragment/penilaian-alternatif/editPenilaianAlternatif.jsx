@@ -49,19 +49,19 @@ const EditPenilaianAlternatif = () => {
         <div className='flex justify-center items-center w-full h-screen absolute'>
             <div className='w-1/6 flex h-screen'>
             </div>
-            <div className='w-5/6 h-screen bg-gray-50'>
+            <div className='w-5/6 h-screen bg-white'>
                 <div className='flex justify-center pt-20'>
                     <div className='w-full p-10'>
-                        <div className='w-full h-fit pl-5 bg-white border p-2'>
+                        <div className='w-full h-fit pl-5 bg-white border p-2 rounded-lg shadow'>
 
                             <h1 className='font-bold mt-5'>Tambah Nilai Keputusan</h1>
                             <div className='flex pt-10 h-full'>
                                 <form onSubmit={handleEdit} className='w-full'>
                                     <div className='w-full'>
-                                        <Label htmlFor='alternatif'>Update Alternatif</Label>
+                                        <Label htmlFor='alternatif'>Nama Alternatif</Label>
                                         <div className='w-full border pl-3 p-1 mb-5 text-sm'>
                                             <div className='grid grid-cols-2 pt-4 w-full'>
-                                                <Label htmlFor='kriteria'>Alternatif</Label>
+                                                <Label style='font-semibold text-sm flex items-center mb-3 pl-7' htmlFor='kriteria'>Alternatif</Label>
                                                 <Label htmlFor='weight-kriteria'>{kriteria.alternatif}</Label>
                                             </div>
                                         </div>

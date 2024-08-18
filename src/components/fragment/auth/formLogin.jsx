@@ -27,7 +27,7 @@ const FormLogin = () => {
           localStorage.setItem('role', res.data.role)
           localStorage.setItem("secretKey", res.data.secret_key)
           console.log("Kamu adalah admin", res.message)
-          alert("Kamu adalah admin")
+          alert("Berhasil Login, Kamu adalah Admin!")
           navigate('/dashboard-admin')
           window.location.reload()
         } else if (role === "user") {
@@ -35,7 +35,7 @@ const FormLogin = () => {
           localStorage.setItem('role', res.data.role)
           localStorage.setItem("secretKey", res.data.secret_key)
           console.log("Kamu adalah user")
-          alert("kamu adalah user")
+          alert("Berhasil Login!")
           navigate('/dashboard-user')
           window.location.reload()
         } else {

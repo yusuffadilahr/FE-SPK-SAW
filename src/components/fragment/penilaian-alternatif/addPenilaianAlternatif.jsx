@@ -13,6 +13,7 @@ const AddPenilaianAlternatif = () => {
     const [selectedAlternatif, setSelectedAlternatif] = useState(null)
     const [bobotKriteria, setBobotKriteria] = useState({})
     const [isAlternatif, setIsAlternatif] = useState([])
+    const [defaultValues, setDefaultValues] = useState({});
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -28,12 +29,16 @@ const AddPenilaianAlternatif = () => {
         if (selectedAlternatif) {  // Pastikan selectedAlternatif memiliki nilai
             singleNilaiAlternatif(selectedAlternatif, (status, res) => {
                 if (status) {
-                    setIsAlternatif(res.data.data)  // Update state dengan data yang diterima
-                    console.log('Data Alternatif:', res.data.data);
+                    const nilaiDefaults = res.data.data.reduce((acc, curr) => {
+                        acc[curr.id_kriteria] = curr.nilai_alternatif;
+                        return acc;
+                    }, {});
+                    setDefaultValues(nilaiDefaults);
+                    setIsAlternatif(res.data.data);
                 } else {
                     console.log('Error:', res);
                 }
-            });
+            })
         }
     }, [selectedAlternatif]);
 
@@ -73,7 +78,7 @@ const AddPenilaianAlternatif = () => {
             nilai_alternatif: kriteria.map((krit) => ({
                 id_alternatif: parseInt(selectedAlternatif, 10),
                 id_kriteria: krit.id_kriteria,
-                nilai_alternatif: parseInt(bobotKriteria[krit.id_kriteria] || 0, 10)
+                nilai_alternatif: parseInt(bobotKriteria[krit.id_kriteria] || defaultValues[krit.id_kriteria] || 0, 10)
             }))
         };
 
@@ -82,8 +87,7 @@ const AddPenilaianAlternatif = () => {
                 alert('Penilaian Berhasil Ditambahkan')
                 navigate('/penilaian-alternatif-admin')
             } else {
-                alert('Data alternatif ini sudah memiliki nilai', res.message)
-                window.location.reload()
+                console.error(res)
             }
         })
     }
@@ -92,10 +96,10 @@ const AddPenilaianAlternatif = () => {
         <div className='flex justify-center items-center w-full h-screen absolute'>
             <div className='w-1/6 flex h-screen'>
             </div>
-            <div className='w-5/6 h-screen bg-gray-50'>
+            <div className='w-5/6 h-screen bg-white'>
                 <div className='flex justify-center pt-20'>
                     <div className='w-full p-10'>
-                        <div className='w-full h-fit pl-5 bg-white border p-2'>
+                        <div className='w-full h-fit pl-5 bg-white border p-2 rounded-lg shadow mb-10'>
                             <h1 className='font-bold mt-5'>Tambah Nilai Keputusan</h1>
                             <div className='flex pt-10 h-full'>
                                 <form onSubmit={handleAddPenilaianData} className='w-full'>
@@ -126,11 +130,11 @@ const AddPenilaianAlternatif = () => {
                                                     </div>
                                                     <div className='justify-end flex w-full'>
                                                         <select name={`kriteria-${krit.id_kriteria}`}
+                                                            required
                                                             id={`kriteria-${krit.id_kriteria}`}
                                                             onChange={(e) => handleKriteria(krit.id_kriteria, e.target.value)}
-                                                            className='w-full border pl-3 p-1 mb-5 text-sm'>
-                                                            <option className='w-full border' value={1}>1</option> 
-                                                            {/* Helpppp gy */}
+                                                            className='w-full border pl-3 p-1 mb-5 text-sm'                                                            >
+                                                            <option className='w-full border' value={bobotKriteria[krit.id_kriteria] || defaultValues[krit.id_kriteria]}>{defaultValues[krit.id_kriteria] ? defaultValues[krit.id_kriteria] : 'Select Option'}</option>
                                                             {[...Array(10).keys()].map(i => (
                                                                 <option key={i + 1} value={i + 1} className='w-full border'>{i + 1}</option>
                                                             ))}

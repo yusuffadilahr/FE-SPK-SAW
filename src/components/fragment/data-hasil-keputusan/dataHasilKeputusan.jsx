@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Fragment } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getPenilaianData, getPerhitunganData } from '../../../service/data.service'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
@@ -11,6 +11,7 @@ const DataHasilKeputusan = () => {
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const [penilaian, setPenilaian] = useState([])
+    const navigate=useNavigate()
 
     const headerTable = {
         no: 'No',
@@ -22,6 +23,11 @@ const DataHasilKeputusan = () => {
     useEffect(() => {
         getPerhitunganData((res) => {
             setPenilaian(res.data.data.perangkingan)
+            if (res.data.statusCode === 400) {
+                alert(res.data.message)
+                alert('Harap isi data penilaian alternatif terlebih dahulu')
+                navigate('/penilaian-alternatif-admin')
+            }
         })
     }, [])
 
@@ -41,9 +47,9 @@ const DataHasilKeputusan = () => {
             <div className='flex'>
                 <div className='w-1/6 h-screen bg-gray-100 fixed top-0 left-0'>
                 </div>
-                <div className='w-5/6 h-screen ml-[16.66%] p-4 bg-gray-50 pt-24'>
+                <div className='w-5/6 h-screen ml-[16.66%] p-4 bg-white pt-24'>
                     <div className='overflow-x-auto flex justify-center items-center'>
-                        <div className='border bg-white rounded-lg p-5 w-[1000px] h-fit'>
+                        <div className='border bg-white rounded-lg p-5 w-[1000px] h-fit mb-10 shadow'>
                             <div className='bg-white'>
                                 <div className='mb-3'>
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>

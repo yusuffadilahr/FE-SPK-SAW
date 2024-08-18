@@ -37,16 +37,16 @@ const AddDataKriteria = () => {
         <div className='flex justify-center items-center w-full h-screen absolute'>
             <div className='w-1/6 flex h-screen'>
             </div>
-            <div className='w-5/6 h-screen bg-gray-50'>
+            <div className='w-5/6 h-screen bg-white'>
                 <div className='flex justify-center pt-20'>
                     <div className='w-full p-10'>
-                        <div className='w-full h-fit pl-5 bg-white border p-2'>
+                        <div className='w-full h-fit pl-5 bg-white border p-2 rounded-lg shadow'>
                             <h1 className='font-bold mt-5'>Tambah Kriteria</h1>
                             <div className='flex pt-10 h-full'>
                                 <div className='w-2/3'>
                                     <form onSubmit={handleAddKriteria}>
-                                        <Label htmlFor='kriteria'>Tambah Kriteria</Label>
-                                        <Input placeholder='Tambah Produk' name='kriteria' type='text' />
+                                        <Label htmlFor='kriteria'>Nama Kriteria</Label>
+                                        <Input placeholder='Tambah Kriteria' name='kriteria' type='text' />
                                         <Label htmlFor='bobot'>Bobot Kriteria</Label>
                                         <Input placeholder='Tambah Bobot Kriteria' name='bobot' type='number' />
                                         <Label htmlFor='keterangan'>Keterangan</Label>
@@ -61,7 +61,7 @@ const AddDataKriteria = () => {
                                                 bulat='rounded-xl'
                                                 color='bg-white border hover:bg-black'
                                                 text='text-black hover:text-white mr-1'
-                                            >Tambah Kriteria</ButtonCustom>
+                                            >Tambah</ButtonCustom>
                                             <Link to='/data-kriteria-admin'>
                                                 <ButtonCustom
                                                     bulat='rounded-xl'

@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { deletePenilaianById, getAlternatifData, getDataKriteria, getPenilaianData } from '../../../service/data.service'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
 import AddIcons from '../../element/icons/addIcons'
 
 const PenilaianAlternatif = () => {
+    const {id_nilai_alternatif} = useParams()
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const [penilaian, setPenilaian] = useState([])
@@ -52,19 +53,20 @@ const PenilaianAlternatif = () => {
         })
     }, [])
 
-    // const handleDeletPenilaianById = (id_nilai_alternatif) => {
-    //     if (window.confirm('Apakah anda yakin ingin menghapus data ini?')) {
-    //         deletePenilaianById(id_nilai_alternatif, (status, res) => {
-    //             setPenilaian(penilaian.map((i) => i.id_nilai_alternatif === id_nilai_alternatif))
-    //             if (status) {
-    //                 console.log(res.data)
-    //             }
-    //             else {
-    //                 console.error(res.data)
-    //             }
-    //         })
-    //     }
-    // }
+    const handleDeletPenilaianById = (id_nilai_alternatif) => {
+        if (window.confirm('Apakah anda yakin ingin menghapus data ini?')) {
+            deletePenilaianById(id_nilai_alternatif, (status, res) => {
+                setPenilaian(penilaian.map((i) => i.id_nilai_alternatif === id_nilai_alternatif))
+                if (status) {
+                    alert(res.message)
+                    window.location.reload()
+                }
+                else {
+                   alert(res.message)
+                }
+            })
+        }
+    }
 
     const totalPages = Math.ceil(penilaian.length / entriesPerPage)
     const paginatedData = penilaian.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
@@ -82,17 +84,17 @@ const PenilaianAlternatif = () => {
             <div className='flex'>
                 <div className='w-1/6 h-screen bg-gray-100 fixed top-0 left-0'>
                 </div>
-                <div className='w-5/6 h-screen ml-[16.66%] p-4 bg-gray-50 pt-24'>
+                <div className='w-5/6 h-screen ml-[16.66%] p-4 bg-white pt-24'>
                     <div className='overflow-x-auto flex justify-center items-center'>
-                        <div className='border bg-white rounded-lg p-5 w-[1000px] h-fit'>
+                        <div className='border bg-white rounded-lg shadow p-5 w-[1000px] h-fit mb-10'>
                             <div className='bg-white'>
                                 <div className='mb-3'>
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
-                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Nilai Keputusan</h1>
+                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Keputusan</h1>
                                     </div>
                                     <Link to='/add-penilaian-alternatif-admin'>
                                         <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
-                                           <AddIcons />
+                                            <AddIcons />
                                             Tambah Nilai Keputusan
                                         </ButtonCustom>
                                     </Link>
@@ -109,7 +111,7 @@ const PenilaianAlternatif = () => {
                                             </div>
                                             <div className='flex justify-end items-center text-[11px]'>
                                                 <div className='border flex items-center'>
-                                                   <SearchIcons />
+                                                    <SearchIcons />
                                                     <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                                 </div>
                                             </div>
@@ -136,7 +138,7 @@ const PenilaianAlternatif = () => {
                                                         <Link to={`/ubah-penilaian-admin/${body.id_nilai_alternatif}`}>
                                                             <ButtonCustom>Ubah</ButtonCustom>
                                                         </Link>
-                                                        {/* <ButtonCustom onClick={handleDeletPenilaianById} color='bg-red-600 hover:bg-red-700 m-1'>Hapus</ButtonCustom> */}
+                                                        <ButtonCustom onClick={() => handleDeletPenilaianById(body.id_nilai_alternatif)} color='bg-red-600 hover:bg-red-700 m-1'>Hapus</ButtonCustom>
                                                     </td>
                                                 </tr>
                                             ))}

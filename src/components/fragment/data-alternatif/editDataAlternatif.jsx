@@ -38,10 +38,10 @@ const EditDataAlternatif = () => {
         <div className='flex justify-center items-center w-full h-screen absolute'>
             <div className='w-1/6 flex h-screen'>
             </div>
-            <div className='w-5/6 h-screen bg-gray-50'>
+            <div className='w-5/6 h-screen bg-white'>
                 <div className='flex justify-center pt-20'>
                     <div className='w-full p-10'>
-                        <div className='w-full h-fit pl-5 bg-white border p-2'>
+                        <div className='w-full h-fit pl-5 rounded-lg shadow bg-white border p-2'>
                             <h1 className='font-bold mt-5'>Ubah Data Alternatif</h1>
                             <div className='flex pt-10 h-full'>
                                 <div className='w-2/3'>

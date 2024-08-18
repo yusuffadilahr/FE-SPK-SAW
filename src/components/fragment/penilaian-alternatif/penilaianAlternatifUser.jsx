@@ -41,13 +41,13 @@ const PenilaianAlternatifUser = () => {
             <div className='flex'>
                 <div className='w-1/6 h-screen bg-gray-100 fixed top-0 left-0'>
                 </div>
-                <div className='w-5/6 h-screen ml-[16.66%] p-4 bg-gray-50 pt-24'>
+                <div className='w-5/6 h-screen ml-[16.66%] p-4 bg-white pt-24'>
                     <div className='overflow-x-auto flex justify-center items-center'>
-                        <div className='border bg-white rounded-lg p-5 w-[1000px] h-fit'>
+                        <div className='border bg-white rounded-lg p-5 w-[1000px] h-fit mb-10 shadow'>
                             <div className='bg-white'>
                                 <div className='mb-3'>
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
-                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Nilai Keputusan</h1>
+                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Keputusan</h1>
                                     </div>
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>

@@ -23,7 +23,7 @@ const DashboardUser = () => {
                 <div className='w-1/6 h-screen left-0 top-0 bg-transparent'>
                     <h1>Tesss</h1>
                 </div>
-                <div className='w-5/6 h-screen left-0 top-0 bg-gray-50 pt-24 p-20'>
+                <div className='w-5/6 h-screen left-0 top-0 bg-white pt-24 p-20'>
                     <div className='w-full bg-blue-400 h-10 flex items-center pl-5'>
                         <h1 className='font-bold text-slate-600'>Selamat Datang, {handleUser}!</h1>
                     </div>

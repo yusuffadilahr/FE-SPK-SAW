@@ -15,7 +15,7 @@ const Sidebar = () => {
         return localStorage.getItem('role')
     }
     return (
-        <div className='fixed top-0 left-0 h-screen w-1/6 bg-white border-r z-30'>
+        <div className='fixed top-0 left-0 h-screen w-1/6 bg-gray-50 border-r z-30'>
             <div className='w-full bg-blue-400 h-20'>
                 <div className='flex justify-center items-center h-full w-full'>
                     <h1 className='text-center text-white font-bold'>
@@ -72,15 +72,31 @@ const Sidebar = () => {
                         }
                     </ul>
                 </div>
-                <h1 className='ml-2 text-gray-400 text-xs pt-8'>About</h1>
+                <h1 className='ml-2 text-gray-400 text-xs'>About</h1>
                 <div className='grid grid-cols-1 pt-4'>
                     <ul>
-                        <Link to='https://www.instagram.com/combuchacoffee/?igshid=YmMyMTA2M2Y%3D'>
-                            <li className='pb-8 flex items-center ml-2'>
-                                <ProfileIcons />
-                                <h1 className='ml-3 text-sm text-gray-700'>Combucha Coffee</h1>
-                            </li>
-                        </Link>
+                        {handleNavigation() === "admin" ?
+                            <>
+                                <Link to='/users'>
+                                    <li className='pb-8 flex items-center ml-2'>
+                                        <ProfileIcons />
+                                        <h1 className='ml-3 text-sm text-gray-700'>Profile</h1>
+                                    </li>
+                                </Link>
+                                <Link to='https://www.instagram.com/combuchacoffee/?igshid=YmMyMTA2M2Y%3D'>
+                                    <li className='pb-8 flex items-center ml-2'>
+                                        <ProfileIcons />
+                                        <h1 className='ml-3 text-sm text-gray-700'>Combucha Coffee</h1>
+                                    </li>
+                                </Link>
+                            </>
+                            : <Link to='https://www.instagram.com/combuchacoffee/?igshid=YmMyMTA2M2Y%3D'>
+                                <li className='pb-8 flex items-center ml-2'>
+                                    <ProfileIcons />
+                                    <h1 className='ml-3 text-sm text-gray-700'>Combucha Coffee</h1>
+                                </li>
+                            </Link>
+                        }
                     </ul>
                 </div>
             </div>

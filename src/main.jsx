@@ -23,6 +23,8 @@ import ProsesPerhitunganPageUser from './pages/perhitungan/perhitunganUser'
 import DataHasilKeputusanPageUser from './pages/data-hasil-keputusan/user'
 import DashboardPage from './pages/dashboard'
 import DashboardUserPage from './pages/dashboard/dashboardUser'
+import UsersPage from './pages/user/admin'
+import EditUserPage from './pages/user/admin/editUsers'
 
 const isLoggin = () => {
   return !!localStorage.getItem('secretKey')
@@ -57,6 +59,8 @@ const router = createBrowserRouter([
   { path: '/add-penilaian-alternatif-admin', element: <PrivatePageAdmin><AddPenilaianAlternatifPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
   { path: '/data-hasil-admin', element: <PrivatePageAdmin><DataHasilKeputusanPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
   { path: '/proses-perhitungan-admin', element: <PrivatePageAdmin><ProsesPerhitunganPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
+  { path: '/users', element: <PrivatePageAdmin><UsersPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
+  { path: '/users/:username', element: <PrivatePageAdmin><EditUserPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
 
   // Route User
   { path: '/dashboard-user', element: <PrivatePageUser><DashboardUserPage /></PrivatePageUser>, errorElement: <ErrorPage /> },
