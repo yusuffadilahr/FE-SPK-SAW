@@ -77,7 +77,7 @@ const Dashboard = () => {
                     <h1>Tesss</h1>
                 </div>
                 <div className='w-5/6 h-screen left-0 top-0 bg-white pt-24 p-20'>
-                    <div className='w-full bg-blue-400 h-10 flex items-center pl-5'>
+                    <div className='w-full bg-red-400 h-10 flex items-center pl-5'>
                         <h1 className='font-bold text-white'>Selamat Datang, {handleUser}!</h1>
                     </div>
                     <div className='overflow-x-auto w-full flex justify-center items-center'>

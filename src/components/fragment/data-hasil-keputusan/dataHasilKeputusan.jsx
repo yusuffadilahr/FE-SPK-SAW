@@ -61,12 +61,12 @@ const DataHasilKeputusan = () => {
                         <div className='border bg-white rounded-lg p-5 w-[1000px] h-fit mb-10 shadow'>
                             <div className='bg-white'>
                                 <div className='mb-3'>
-                                    <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
+                                    <div className='mb-2 w-full p-2 py-2 bg-red-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Hasil Keputusan</h1>
                                     </div>
                                     <ButtonCustom onClick={generatePDF} bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
                                         <AddIcons />
-                                        Export To PDF
+                                        Export to PDF
                                     </ButtonCustom>
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>
@@ -105,7 +105,7 @@ const DataHasilKeputusan = () => {
                                                     <tr key={i} className='hover:bg-gray-50'>
                                                         <td className='p-2 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
                                                         <td className='p-2 border'>{body.alternatif}</td>
-                                                        <td className='p-2 border'>{body.hasil}</td>
+                                                        <td className='p-2 border'>{body.hasil.toFixed(3)}</td>
                                                         <td className='p-2 border'>{body.rangking}</td>
                                                     </tr>
                                                 ))}

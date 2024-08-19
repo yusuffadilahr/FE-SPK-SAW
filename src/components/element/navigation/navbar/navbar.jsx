@@ -45,7 +45,7 @@ const NavbarTab = (props) => {
     return (
         <Fragment>
             <div className='fixed top-0 left-0 w-full z-0'>
-                <nav className='w-full h-16 bg-white border-b flex items-center'>
+                <nav className='w-full h-14 bg-white border-b flex items-center'>
                     <div className='flex-1 flex justify-end items-center pr-5'>
                         {/* <ButtonCustom text='text-black' color='bg-white border hover:bg-black hover:text-white' bulat='rounded-xl'>Logout</ButtonCustom> */}
                         <button onClick={handleClick} className='flex items-center'>
@@ -107,8 +107,10 @@ const NavbarTab = (props) => {
                         </button>
                     </div>
                 </nav>
-                <div className='w-full h-4 bg-blue-500 pl-72 flex items-center'>
-                    <h1 className='text-[9px] flex items-center text-white'>{judul}</h1>
+                <div className='w-full h-6 bg-red-400 pl-56 flex justify-center items-center'>
+                    <h1 className='text-[14px] flex justify-center items-center text-black'><span className='ml-1 text-black'>SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN
+BIJI KOPI PADA COMBUCHA COFFEE DENGAN METODE
+SIMPLE ADDITIVE WEIGHTING (SAW)</span></h1>
                 </div>
             </div>
         </Fragment>

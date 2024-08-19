@@ -25,10 +25,10 @@ const Dashboard = () => {
     const navigate = useNavigate()
 
     const tesCard = [
-        { id: 1, name: 'Data Alternatif', url: '/data-alternatif-admin', icons: <Aicons /> },
-        { id: 2, name: 'Data Kriteria', url: '/data-kriteria-admin', icons: <Bicons /> },
-        { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-admin', icons: <Dicons /> },
-        { id: 4, name: 'Kelola User', url: '/users', icons: <ProfileIcons /> },
+        { id: 1, name: 'Data Alternatif', url: '/data-alternatif-user', icons: <Aicons /> },
+        { id: 2, name: 'Data Kriteria', url: '/data-kriteria-user', icons: <Bicons /> },
+        { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-user', icons: <Dicons /> },
+        { id: 4, name: 'Combucha Coffee', url: 'https://www.instagram.com/combuchacoffee/', icons: <ProfileIcons /> },
     ]
 
     useEffect(() => {
@@ -77,8 +77,8 @@ const Dashboard = () => {
                     <h1>Tesss</h1>
                 </div>
                 <div className='w-5/6 h-screen left-0 top-0 bg-white pt-24 p-20'>
-                    <div className='w-full bg-blue-400 h-10 flex items-center pl-5'>
-                        <h1 className='font-bold text-white'>Selamat Datang, {handleUser}!</h1>
+                    <div className='w-full bg-red-400 h-14 flex items-center justify-center'>
+                        <h1 className='text-2xl text-black'>Selamat Datang, <span className='font-bold'>{handleUser}!</span></h1>
                     </div>
                     <div className='overflow-x-auto w-full flex justify-center items-center'>
                         <div className='flex justify-center items-center pt-5 w-full h-full'>

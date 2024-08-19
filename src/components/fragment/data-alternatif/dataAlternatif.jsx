@@ -74,7 +74,7 @@ const DataAlternatif = () => {
                         <div className='border bg-white shadow rounded-lg p-5 w-[1000px] h-fit mb-10'>
                             <div className='bg-white'>
                                 <div className='mb-3'>
-                                    <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
+                                    <div className='mb-2 w-full p-2 py-2 bg-red-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Alternatif</h1>
                                     </div>
                                     <Link to='/add-alternatif-admin'>
@@ -103,7 +103,7 @@ const DataAlternatif = () => {
                                         </div>
                                     </div>
                                     <table className='w-full text-sm text-center'>
-                                        <thead className='bg-gray-100'>
+                                        <thead className='bg-slate-100'>
                                             <tr className='border-b'>
                                                 <th className='p-1 border'>{headerTable.no}</th>
                                                 <th className='p-1 border'>{headerTable.alternatif}</th>
@@ -112,7 +112,7 @@ const DataAlternatif = () => {
                                         </thead>
                                         <tbody>
                                             {paginatedData.map((body, i) => (
-                                                <tr key={i} className='hover:bg-gray-50'>
+                                                <tr key={i} className='hover:bg-slate-50'>
                                                     <td className='p-1 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
                                                     <td className='p-1 border'>{body.alternatif}</td>
                                                     <td className='p-1 border'>

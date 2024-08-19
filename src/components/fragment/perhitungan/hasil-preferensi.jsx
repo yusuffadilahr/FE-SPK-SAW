@@ -12,13 +12,17 @@ const HasilPreferensi = () => {
 
     useEffect(() => {
         getPerhitunganData((res) => {
-            setIsPreferensi(res.data.data.total_preperensi)
+            const data = res.data.data.total_preperensi.map(item => ({
+                ...item,
+                hasil: parseFloat(item.hasil) 
+            }));
+            setIsPreferensi(data);
         })
     }, [])
 
     const totalPagesHasilPreferensi = Math.ceil(isPreferensi.length / entriesPerPage)
     const paginatedHasilPreferensi = isPreferensi.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
-
+    
     const handlePageChange = (page) => {
         setCurrentPage(page)
     }
@@ -44,7 +48,7 @@ const HasilPreferensi = () => {
                             </div>
                             <div className='flex justify-end items-center text-[11px]'>
                                 <div className='border flex items-center'>
-                                  <SearchIcons />
+                                    <SearchIcons />
                                     <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                 </div>
                             </div>
@@ -62,7 +66,7 @@ const HasilPreferensi = () => {
                                     <tr>
                                         <td className='border p-2'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
                                         <td className='border p-2'>{data.alternatif}</td>
-                                        <td className='border p-2'>{data.hasil}</td>
+                                        <td className='border p-2'>{data.hasil.toFixed(3)}</td>
                                     </tr>
                                 </tbody>
                             ))

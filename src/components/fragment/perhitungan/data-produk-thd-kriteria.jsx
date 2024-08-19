@@ -33,7 +33,7 @@ const DataProdukThdKriteria = () => {
                 <div className='flex justify-center items-center'>
                     <div className='w-[1000px] bg-white rounded-lg h-fit'>
                         <div className='w-full p-5 bg-white rounded border'>
-                            <div className='mb-3 p-2 py-2 bg-blue-300 text-sm flex items-center w-full'>
+                            <div className='mb-3 p-2 py-2 bg-red-300 text-sm flex items-center w-full'>
                                 <h1><span className='font-bold mr-1'>Home /</span>Proses Perhitungan</h1>
                             </div>
                             <h1 className='font-semibold text-sm'>1. Data Produk Terhadap Kriteria</h1>

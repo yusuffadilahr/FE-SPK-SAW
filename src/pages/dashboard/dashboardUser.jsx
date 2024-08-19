@@ -8,7 +8,7 @@ const DashboardUserPage = () => {
     <Fragment>
       <DashboardUser />
       <Sidebar />
-      <NavbarTab judul='Dashboard User'/>
+      <NavbarTab judul='Dashboard'/>
     </Fragment>
   )
 }

@@ -25,17 +25,19 @@ import DashboardPage from './pages/dashboard'
 import DashboardUserPage from './pages/dashboard/dashboardUser'
 import UsersPage from './pages/user/admin'
 import EditUserPage from './pages/user/admin/editUsers'
+import { Link } from 'react-router-dom'
+import LandingPage from './pages/landingPage'
 
 const isLoggin = () => {
   return !!localStorage.getItem('secretKey')
 }
 
 const PrivatePageAdmin = ({ children }) => {
-  return isLoggin() ? children : <Navigate to='/' />
+  return isLoggin() ? children : <Navigate to='/login' />
 }
 
 const PrivatePageUser = ({ children }) => {
-  return isLoggin() ? children : <Navigate to='/' />
+  return isLoggin() ? children : <Navigate to='/login' />
 }
 
 const BackLoginAdmin = ({ children }) => {
@@ -45,7 +47,8 @@ const BackLoginAdmin = ({ children }) => {
 const router = createBrowserRouter([
 
   // Route Admin
-  { path: '/', element: <BackLoginAdmin><LoginPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
+  { path: '/', element: <LandingPage />, errorElement: <ErrorPage /> },
+  { path: '/login', element: <BackLoginAdmin><LoginPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
   { path: '/register', element: <BackLoginAdmin><RegisterPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
   { path: '/dashboard-admin', element: <PrivatePageAdmin><DashboardPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
   { path: '/data-alternatif-admin', element: <PrivatePageAdmin><DataAlternatifPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },

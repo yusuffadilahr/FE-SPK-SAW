@@ -53,7 +53,7 @@ const DataAlternatifUser = () => {
                         <div className='border bg-white shadow rounded-lg p-5 w-[1000px] h-fit mb-10'>
                             <div className='bg-white'>
                                 <div className='mb-3'>
-                                    <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
+                                    <div className='mb-2 w-full p-2 py-2 bg-red-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Alternatif</h1>
                                     </div>
                                 </div>

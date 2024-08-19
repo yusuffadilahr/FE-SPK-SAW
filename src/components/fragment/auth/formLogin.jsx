@@ -6,6 +6,7 @@ import Input from '../../element/form/input'
 import { Link, useNavigate } from 'react-router-dom'
 import LockIcons from '../../element/icons/lockIcons'
 import { Login } from '../../../service/auth.service'
+import pp from '../../../assets/combucha.jpg'
 
 const FormLogin = () => {
   const [loginFail, setLoginFail] = useState('')
@@ -53,13 +54,15 @@ const FormLogin = () => {
   }
   return (
     <div className='w-full h-screen flex'>
-      <div className='w-full h-full bg-slate-100 flex justify-center items-center'>
-        <div className='w-96 h-96 border shadow-lg rounded-xl flex items-center animate-flip-down bg-white'>
+      <div className='w-full h-full bg-red-50 flex justify-center items-center'>
+        <div className='w-96 h-96 border shadow-lg rounded-xl flex items-center animate-fade-left bg-white'>
           <div className='w-full'>
-            <h1 className='font-semibold pl-6 text-xl'>Login</h1>
-            <h1 className='pb-5 flex justify-center'>
-              <span className='font-semibold mr-1'>Selamat Datang, </span> Harap masuk terlebih dahulu!
-            </h1>
+            <div className='w-full flex justify-center items-center'>
+              <img src={pp} alt="Logo" className='w-56 mt-3 mb-2 flex justify-center' />
+            </div>
+            {/* <h1 className='pb-5 flex justify-center text-xs'>
+              <span className='font-semibold mr-1 text-xs'>Selamat Datang, </span> Harap masuk terlebih dahulu!
+            </h1> */}
             <form onSubmit={handleLogin} className='p-2'>
               <Label htmlFor='username'>
                 <ProfileIcons size='size-4 mr-1' />
@@ -82,7 +85,7 @@ const FormLogin = () => {
               <ButtonCustom
                 type='submit'
                 bulat='rounded-xl'
-                color='bg-blue-400 border w-full hover:bg-blue-300'
+                color='bg-red-800 border w-full hover:bg-red-900'
                 text='text-white hover:text-white mt-5'
               >Login</ButtonCustom>
               <div className='text-red-600 flex justify-center text-xs'>
