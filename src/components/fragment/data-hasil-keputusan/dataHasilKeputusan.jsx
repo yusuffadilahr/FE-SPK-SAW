@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Fragment } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import { Link, useNavigate } from 'react-router-dom'
-import { getPenilaianData, getPerhitunganData } from '../../../service/data.service'
+import { getPerhitunganData } from '../../../service/data.service'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
+import AddIcons from '../../element/icons/addIcons'
+import { useReactToPrint } from 'react-to-print'
 
 const DataHasilKeputusan = () => {
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const [penilaian, setPenilaian] = useState([])
-    const navigate=useNavigate()
+    const componentPDF = useRef()
+    const navigate = useNavigate()
 
     const headerTable = {
         no: 'No',
@@ -42,6 +45,12 @@ const DataHasilKeputusan = () => {
         setEntriesPerPage(parseInt(e.target.value))
         setCurrentPage(1)
     }
+
+    const generatePDF = useReactToPrint({
+        content: () => componentPDF.current,
+        documentTitle: "Export Data",
+        onAfterPrint: () => alert("Berhasil mengekspor ke PDF")
+    })
     return (
         <Fragment>
             <div className='flex'>
@@ -55,6 +64,10 @@ const DataHasilKeputusan = () => {
                                     <div className='mb-2 w-full p-2 py-2 bg-blue-300 text-sm'>
                                         <h1><span className='font-bold mr-1'>Home /</span>Data Hasil Keputusan</h1>
                                     </div>
+                                    <ButtonCustom onClick={generatePDF} bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
+                                        <AddIcons />
+                                        Export To PDF
+                                    </ButtonCustom>
                                 </div>
                                 <div className='w-full border rounded-lg p-5'>
                                     <div className='w-full pb-5 flex items-center justify-between'>
@@ -63,6 +76,9 @@ const DataHasilKeputusan = () => {
                                                 <Label htmlFor='entries-per-page' style='mr-2 text-[11px]'>Show</Label>
                                                 <select id='entries-per-page' value={entriesPerPage} onChange={handleEntriesChange} className='border p-1 text-[11px]'>
                                                     <option value={5}>5</option>
+                                                    <option value={10}>10</option>
+                                                    <option value={25}>25</option>
+                                                    <option value={penilaian.length}>All</option>
                                                 </select>
                                                 <span className='ml-2 text-[11px]'>entries</span>
                                             </div>
@@ -74,26 +90,28 @@ const DataHasilKeputusan = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <table className='w-full text-sm text-center'>
-                                        <thead className='bg-gray-100'>
-                                            <tr className='border-b'>
-                                                <th className='p-1 border'>{headerTable.no}</th>
-                                                <th className='p-1 border'>{headerTable.alternatif}</th>
-                                                <th className='p-1 border'>{headerTable.hasil}</th>
-                                                <th className='p-1 border'>{headerTable.rank}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {paginatedData.map((body, i) => (
-                                                <tr key={i} className='hover:bg-gray-50'>
-                                                    <td className='p-2 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
-                                                    <td className='p-2 border'>{body.alternatif}</td>
-                                                    <td className='p-2 border'>{body.hasil}</td>
-                                                    <td className='p-2 border'>{body.rangking}</td>
+                                    <div ref={componentPDF}>
+                                        <table className='w-full text-sm text-center'>
+                                            <thead className='bg-gray-100'>
+                                                <tr className='border-b'>
+                                                    <th className='p-1 border'>{headerTable.no}</th>
+                                                    <th className='p-1 border'>{headerTable.alternatif}</th>
+                                                    <th className='p-1 border'>{headerTable.hasil}</th>
+                                                    <th className='p-1 border'>{headerTable.rank}</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {paginatedData.map((body, i) => (
+                                                    <tr key={i} className='hover:bg-gray-50'>
+                                                        <td className='p-2 border'>{(currentPage - 1) * entriesPerPage + i + 1}</td>
+                                                        <td className='p-2 border'>{body.alternatif}</td>
+                                                        <td className='p-2 border'>{body.hasil}</td>
+                                                        <td className='p-2 border'>{body.rangking}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <div className='flex items-center pt-4'>
                                         <div className='grid grid-cols-2 w-full'>
                                             <div className='flex justify-start items-start'>

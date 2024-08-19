@@ -1,19 +1,72 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Aicons from '../../element/icons/AIcons'
 import Dicons from '../../element/icons/Dicons'
 import Bicons from '../../element/icons/Bicons'
 import ProfileIcons from '../../element/icons/profileIcons'
-import { Logout } from '../../../service/auth.service'
+import { getPerhitunganData } from '../../../service/data.service'
+import { Bar, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
-const Dashboard= () => {
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    LineElement,
+    PointElement,
+    ArcElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+const Dashboard = () => {
+    const [penilaian, setPenilaian] = useState([])
+    const navigate = useNavigate()
 
     const tesCard = [
         { id: 1, name: 'Data Alternatif', url: '/data-alternatif-admin', icons: <Aicons /> },
         { id: 2, name: 'Data Kriteria', url: '/data-kriteria-admin', icons: <Bicons /> },
         { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-admin', icons: <Dicons /> },
-        { id: 4, name: 'Combucha Coffee', url: 'https://www.instagram.com/combuchacoffee/?igshid=YmMyMTA2M2Y%3D', icons: <ProfileIcons /> },
+        { id: 4, name: 'Kelola User', url: '/users', icons: <ProfileIcons /> },
     ]
+
+    useEffect(() => {
+        getPerhitunganData((res) => {
+            setPenilaian(res.data.data.perangkingan)
+            if (res.data.statusCode === 400) {
+                alert(res.data.message)
+                alert('Harap isi data penilaian alternatif terlebih dahulu')
+                navigate('/penilaian-alternatif-admin')
+            }
+        })
+    }, [])
+    const data = {
+        labels: penilaian.map((item) => item.alternatif),
+        datasets: [
+            {
+                label: 'Hasil Penilaian',
+                data: penilaian.map((item) => item.hasil),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
 
     const handleUser = localStorage.getItem('username')
 
@@ -25,10 +78,10 @@ const Dashboard= () => {
                 </div>
                 <div className='w-5/6 h-screen left-0 top-0 bg-white pt-24 p-20'>
                     <div className='w-full bg-blue-400 h-10 flex items-center pl-5'>
-                        <h1 className='font-bold text-slate-600'>Selamat Datang, {handleUser}!</h1>
+                        <h1 className='font-bold text-white'>Selamat Datang, {handleUser}!</h1>
                     </div>
                     <div className='overflow-x-auto w-full flex justify-center items-center'>
-                        <div className='flex justify-center items-ceenter pt-5 w-full h-full'>
+                        <div className='flex justify-center items-center pt-5 w-full h-full'>
                             <div className='grid grid-cols-4'>
                                 {tesCard.map((card) => (
                                     <div key={card.id} className='w-56 h-20 m-2 rounded-xl border shadow bg-white'>
@@ -40,6 +93,18 @@ const Dashboard= () => {
                                         </Link>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div className='p-10 w-full pl-20 h-fit items-center justify-center flex'>
+                        <div className='w-full pb-5 flex justify-center'>
+                            <div className='grid grid-cols-2 w-full'>
+                                <div className='flex justify-start items-center w-[400px]'>
+                                    <Bar data={data} options={{ responsive: true }} />
+                                </div>
+                                <div className='flex justify-end items-center w-[400px]'>
+                                    <Line data={data} options={{ responsive: true }} />
+                                </div>
                             </div>
                         </div>
                     </div>
