@@ -47,7 +47,7 @@ const BackLoginAdmin = ({ children }) => {
 const router = createBrowserRouter([
 
   // Route Admin
-  { path: '/', element: <LandingPage />, errorElement: <ErrorPage /> },
+  { path: '/', element: <BackLoginAdmin><LandingPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
   { path: '/login', element: <BackLoginAdmin><LoginPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
   { path: '/register', element: <BackLoginAdmin><RegisterPage /></BackLoginAdmin>, errorElement: <ErrorPage /> },
   { path: '/dashboard-admin', element: <PrivatePageAdmin><DashboardPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },

@@ -27,8 +27,8 @@ const Dashboard = () => {
     const tesCard = [
         { id: 1, name: 'Data Alternatif', url: '/data-alternatif-user', icons: <Aicons /> },
         { id: 2, name: 'Data Kriteria', url: '/data-kriteria-user', icons: <Bicons /> },
-        { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-user', icons: <Dicons /> },
-        { id: 4, name: 'Combucha Coffee', url: 'https://www.instagram.com/combuchacoffee/', icons: <ProfileIcons /> },
+        { id: 3, name: 'Penilaian Keputusan', url: '/penilaian-alternatif-user', icons: <Dicons /> },
+        { id: 4, name: 'Hasil Keputusan', url: '/data-hasil-user', icons: <ProfileIcons /> },
     ]
 
     useEffect(() => {

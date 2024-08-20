@@ -27,8 +27,8 @@ const Dashboard = () => {
     const tesCard = [
         { id: 1, name: 'Data Alternatif', url: '/data-alternatif-admin', icons: <Aicons /> },
         { id: 2, name: 'Data Kriteria', url: '/data-kriteria-admin', icons: <Bicons /> },
-        { id: 3, name: 'Hasil Keputusan', url: '/data-hasil-admin', icons: <Dicons /> },
-        { id: 4, name: 'Kelola User', url: '/users', icons: <ProfileIcons /> },
+        { id: 3, name: 'Penilaian Keputusan', url: '/penilaian-alternatif-admin', icons: <Dicons /> },
+        { id: 4, name: 'Hasil Keputusan', url: '/data-hasil-admin', icons: <ProfileIcons /> },
     ]
 
     useEffect(() => {

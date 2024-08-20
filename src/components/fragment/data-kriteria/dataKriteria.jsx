@@ -123,11 +123,11 @@ const DataKriteria = () => {
                                                     <td className='p-1 border'>{body.ket}</td>
                                                     <td className='p-1 border'>
                                                         <Link to={`/data-kriteria-admin/${body.id_kriteria}`}>
-                                                            <ButtonCustom>Edit</ButtonCustom>
+                                                            <ButtonCustom>Ubah</ButtonCustom>
                                                         </Link>
                                                         <ButtonCustom
                                                             onClick={() => handleDelete(body.id_kriteria)}
-                                                            color='bg-red-600 hover:bg-red-700 m-1'>Delete</ButtonCustom>
+                                                            color='bg-red-600 hover:bg-red-700 m-1'>Hapus</ButtonCustom>
                                                     </td>
                                                 </tr>
                                             ))}

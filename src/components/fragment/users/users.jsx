@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Label from '../../element/form/label'
 import SearchIcons from '../../element/icons/searchIcons'
 import Input from '../../element/form/input'
-import { deleteDataUsers, getUsers } from '../../../service/user.service'
+import { deleteDataUsers, getUsernameByUsername, getUsers, updateUsers } from '../../../service/user.service'
 import AddIcons from '../../element/icons/addIcons'
 
 const Users = () => {
+    const { username } = useParams()
     const [isUser, setIsUser] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(5)
@@ -15,9 +16,42 @@ const Users = () => {
     useEffect(() => {
         getUsers((res) => {
             setIsUser(res.data.data)
-            console.log(res)
         })
     }, [])
+
+    const handleUpdate = (username) => {
+        console.log(username)
+        updateUsers(username, (res) => {
+            if (res.data.statusCode === 200) {
+                console.log('respon berhasil', res)
+                setIsUser(prevUser => prevUser.map(u => u.username === username ? { ...u, role: res.data.newRole } : u))
+            } else {
+                console.log('respon gagal', res)
+            }
+        })
+
+        // 
+        // const data = { role: '' }
+        // updateUsers(username, data, (res) => {
+        //     if (res.data.statusCode === 200) {
+        //         const cekData = setIsUser(prevUser =>
+        //             prevUser.map(u =>
+        //                 u.username === username ? { ...u, role: res.data.newRole } : u
+        //             ))
+        //         if (!cekData) {
+        //             setIsUser(paginatedData)
+        //         } else {
+        //             setIsUser(paginatedData.filter((u) => u.username !== username))
+        //         }
+        //         console.log(res)
+        //         alert('Role berhasil diperbarui!');
+        //     } else {
+        //         console.log(res);
+
+        //         alert('Gagal memperbarui role!');
+        //     }
+        // });
+    }
 
     const totalPages = Math.ceil(isUser.length / entriesPerPage)
     const paginatedData = isUser.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
@@ -40,7 +74,6 @@ const Users = () => {
                         window.location.reload()
                     }
                 } catch (error) {
-                    alert(res.message)
                     console.error(error);
                 }
             })
@@ -95,12 +128,12 @@ const Users = () => {
                                                 <td className='p-1 border'>{body.username}</td>
                                                 <td className='p-1 border'>{body.role}</td>
                                                 <td className='p-1 border'>
-                                                    <Link to={`/users/${body.username}`}>
-                                                        <ButtonCustom>Edit</ButtonCustom>
-                                                    </Link>
+                                                    <ButtonCustom
+                                                        onClick={() => handleUpdate(body.username)}
+                                                    >Ubah Role</ButtonCustom>
                                                     <ButtonCustom
                                                         onClick={() => handleDelete(body.username)}
-                                                        color='bg-red-600 hover:bg-red-700 m-1'>Delete</ButtonCustom>
+                                                        color='bg-red-600 hover:bg-red-700 m-1'>Hapus</ButtonCustom>
                                                 </td>
                                             </tr>
                                         ))}

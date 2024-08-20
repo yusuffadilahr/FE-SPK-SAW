@@ -16,7 +16,7 @@ const LandingPage = () => {
                         </Link>
                     </div>
                     <div className='flex justify-end pr-20 items-center w-full'>
-                        <Link to='/'>
+                        <Link to='https://instagram.com/combuchacoffee'>
                             <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 mr-1 hover:bg-red-800' text='text-red-800 hover:text-white'>Combucha Coffee</ButtonCustom>
                         </Link>
                         <Link to='/login'>
