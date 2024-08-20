@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ButtonCustom from '../../element/button/button'
-import { Link, useParams } from 'react-router-dom'
 import Label from '../../element/form/label'
 import SearchIcons from '../../element/icons/searchIcons'
 import Input from '../../element/form/input'
-import { deleteDataUsers, getUsernameByUsername, getUsers, updateUsers } from '../../../service/user.service'
-import AddIcons from '../../element/icons/addIcons'
+import { deleteDataUsers, getUsers, updateUsers } from '../../../service/user.service'
 
 const Users = () => {
-    const { username } = useParams()
     const [isUser, setIsUser] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(5)
@@ -18,39 +15,20 @@ const Users = () => {
             setIsUser(res.data.data)
         })
     }, [])
+    console.log("get user : ", isUser);
 
     const handleUpdate = (username) => {
         console.log(username)
         updateUsers(username, (res) => {
             if (res.data.statusCode === 200) {
-                console.log('respon berhasil', res)
-                setIsUser(prevUser => prevUser.map(u => u.username === username ? { ...u, role: res.data.newRole } : u))
+                getUsers((res) => {
+                    setIsUser(res.data.data)
+                })
+                alert(res.data.message)
             } else {
-                console.log('respon gagal', res)
+                alert(res.data.message)
             }
         })
-
-        // 
-        // const data = { role: '' }
-        // updateUsers(username, data, (res) => {
-        //     if (res.data.statusCode === 200) {
-        //         const cekData = setIsUser(prevUser =>
-        //             prevUser.map(u =>
-        //                 u.username === username ? { ...u, role: res.data.newRole } : u
-        //             ))
-        //         if (!cekData) {
-        //             setIsUser(paginatedData)
-        //         } else {
-        //             setIsUser(paginatedData.filter((u) => u.username !== username))
-        //         }
-        //         console.log(res)
-        //         alert('Role berhasil diperbarui!');
-        //     } else {
-        //         console.log(res);
-
-        //         alert('Gagal memperbarui role!');
-        //     }
-        // });
     }
 
     const totalPages = Math.ceil(isUser.length / entriesPerPage)
@@ -70,11 +48,14 @@ const Users = () => {
             deleteDataUsers(username, (res) => {
                 try {
                     if (res.statusCode === 200) {
+                        getUsers((res) => {
+                            setIsUser(res.data.data)
+                        })
                         alert(res.message)
-                        window.location.reload()
                     }
+                    alert(res.message)
                 } catch (error) {
-                    console.error(error);
+                    alert("Ada Error : " + error)
                 }
             })
         }
@@ -98,7 +79,6 @@ const Users = () => {
                                     <div className='grid grid-cols-2 w-full'>
                                         <div className='flex items-center justify-start'>
                                             <Label htmlFor='entries-per-page' style='mr-2 text-[11px]'>Show</Label>
-                                            {/* value={entriesPerPage} onChange={handleEntriesChange} */}
                                             <select id='entries-per-page' value={entriesPerPage} onChange={handleEntriesChange} className='border p-1 text-[11px]'>
                                                 <option value={5}>5</option>
                                             </select>

@@ -38,7 +38,11 @@ export const getUsernameByUsername = (username, callback) => {
 
 export const updateUsers = (username, callback) => {
     try {
-        axios.put(`http://localhost:4004/api-v1/users/admin/${username}`, {
+        console.log("cek username headers : ", usernameGet);
+        console.log("cek username params : ", username);
+
+
+        axios.put(`http://localhost:4004/api-v1/users/admin/${username}`, [], {
             headers: {
                 "Content-Type": "application/json",
                 "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
