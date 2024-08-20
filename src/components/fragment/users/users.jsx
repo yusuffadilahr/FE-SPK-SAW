@@ -14,7 +14,8 @@ const Users = () => {
         getUsers((res) => {
             setIsUser(res.data.data)
         })
-    }, [])
+    }, [isUser])
+
     console.log("get user : ", isUser);
 
     const handleUpdate = (username) => {

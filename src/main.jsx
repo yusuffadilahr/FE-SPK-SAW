@@ -24,7 +24,6 @@ import DataHasilKeputusanPageUser from './pages/data-hasil-keputusan/user'
 import DashboardPage from './pages/dashboard'
 import DashboardUserPage from './pages/dashboard/dashboardUser'
 import UsersPage from './pages/user/admin'
-import EditUserPage from './pages/user/admin/editUsers'
 import { Link } from 'react-router-dom'
 import LandingPage from './pages/landingPage'
 
@@ -63,7 +62,6 @@ const router = createBrowserRouter([
   { path: '/data-hasil-admin', element: <PrivatePageAdmin><DataHasilKeputusanPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
   { path: '/proses-perhitungan-admin', element: <PrivatePageAdmin><ProsesPerhitunganPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
   { path: '/users', element: <PrivatePageAdmin><UsersPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
-  { path: '/users/:username', element: <PrivatePageAdmin><EditUserPage /></PrivatePageAdmin>, errorElement: <ErrorPage /> },
 
   // Route User
   { path: '/dashboard-user', element: <PrivatePageUser><DashboardUserPage /></PrivatePageUser>, errorElement: <ErrorPage /> },
