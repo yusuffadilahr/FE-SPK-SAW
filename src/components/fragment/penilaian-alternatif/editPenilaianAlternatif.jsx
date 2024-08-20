@@ -54,7 +54,7 @@ const EditPenilaianAlternatif = () => {
                     <div className='w-full p-10'>
                         <div className='w-full h-fit pl-5 bg-white border p-2 rounded-lg shadow'>
 
-                            <h1 className='font-bold mt-5'>Tambah Nilai Keputusan</h1>
+                            <h1 className='font-bold mt-5'>Ubah Nilai Keputusan</h1>
                             <div className='flex pt-10 h-full'>
                                 <form onSubmit={handleEdit} className='w-full'>
                                     <div className='w-full'>
@@ -102,7 +102,7 @@ const EditPenilaianAlternatif = () => {
                                                 bulat='rounded-xl'
                                                 color='bg-white border hover:bg-black'
                                                 text='text-black hover:text-white mr-1'
-                                            >Tambah</ButtonCustom>
+                                            >Ubah</ButtonCustom>
                                             <Link to='/penilaian-alternatif-admin'>
                                                 <ButtonCustom
                                                     bulat='rounded-xl'

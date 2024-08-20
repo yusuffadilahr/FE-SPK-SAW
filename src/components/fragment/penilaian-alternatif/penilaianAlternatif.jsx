@@ -90,7 +90,7 @@ const PenilaianAlternatif = () => {
                             <div className='bg-white'>
                                 <div className='mb-3'>
                                     <div className='mb-2 w-full p-2 py-2 bg-red-300 text-sm'>
-                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Keputusan</h1>
+                                        <h1><span className='font-bold mr-1'>Home /</span>Penilaian Matriks Keputusan</h1>
                                     </div>
                                     <Link to='/add-penilaian-alternatif-admin'>
                                         <ButtonCustom bulat='rounded-sm' fontSize='text-xs' text='flex items-center text-black hover:text-white' color='bg-white border hover:bg-black'>
