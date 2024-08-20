@@ -14,7 +14,7 @@ const Users = () => {
         getUsers((res) => {
             setIsUser(res.data.data)
         })
-    }, [isUser])
+    }, [])
 
     console.log("get user : ", isUser);
 
@@ -72,7 +72,7 @@ const Users = () => {
                         <div className='bg-white'>
                             <div className='mb-3'>
                                 <div className='mb-2 w-full p-2 py-2 bg-red-300 text-sm'>
-                                    <h1><span className='font-bold mr-1'>Home /</span>Profile</h1>
+                                    <h1><span className='font-bold mr-1'>Home /</span>Kelola User</h1>
                                 </div>
                             </div>
                             <div className='w-full border rounded-lg p-5'>
