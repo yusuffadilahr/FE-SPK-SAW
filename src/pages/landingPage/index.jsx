@@ -28,7 +28,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </nav>
-            <div className='flex bg-red-50 w-full h-screen justify-center items-center'>
+            <div className='flex bg-gradient-to-tr from-red-200 to-red-50  w-full h-screen justify-center items-center'>
                 <div className='grid grid-cols-2 w-full h-full'>
                     {/* <div className='flex justify-start items-center w-1/2 h-full'>
                         <img src={pp1} alt="" className='w-full ml-20 animate-fade-left' />
@@ -67,9 +67,9 @@ SIMPLE ADDITIVE WEIGHTING (SAW) */}
                 </div>
             </div>
             <footer>
-                <div className='w-full h-5 bottom-0 bg-red-900 absolute'>
+                <div className='w-full h-5 bottom-0 bg-white absolute'>
                     <div className='flex justify-center items-center w-full h-full'>
-                    <h1 className='text-[8px] text-white'>Copyright @ 2024</h1>
+                    <h1 className='text-[8px] text-red-900'>Copyright @ 2024</h1>
                     </div>
                 </div>
             </footer>
