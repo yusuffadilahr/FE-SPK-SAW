@@ -80,11 +80,11 @@ const Dashboard = () => {
                 <div className='w-full bg-red-400 h-14 flex items-center justify-center'>
                         <h1 className='text-2xl text-black'>Selamat Datang, <span className='font-bold'>{handleUser}!</span></h1>
                     </div>
-                    <div className='w-full flex justify-center items-center'>
+                    <div className='w-full flex justify-between items-center'>
                         <div className='flex justify-center items-center pt-5 w-full h-full'>
                             <div className='grid grid-cols-4'>
                                 {tesCard.map((card) => (
-                                    <div key={card.id} className='w-56 h-20 mr-5 rounded-xl border shadow bg-white'>
+                                    <div key={card.id} className='w-56 h-20 m-5 rounded-xl border shadow bg-white'>
                                         <Link to={card.url}>
                                             <div className='w-full h-full flex justify-center items-center'>
                                                 {card.icons}
