@@ -80,7 +80,7 @@ const Dashboard = () => {
                     <div className='w-full bg-red-400 h-14 flex items-center justify-center'>
                         <h1 className='text-2xl text-black'>Selamat Datang, <span className='font-bold'>{handleUser}!</span></h1>
                     </div>
-                    <div className='overflow-x-auto w-full flex justify-center items-center'>
+                    <div className='w-full flex justify-center items-center'>
                         <div className='flex justify-center items-center pt-5 w-full h-full'>
                             <div className='grid grid-cols-4'>
                                 {tesCard.map((card) => (
