@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { Fragment } from 'react'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { Link } from 'react-router-dom'
-import { getPenilaianData, getPerhitunganData } from '../../../service/data.service'
+import { getPerhitunganData } from '../../../service/data.service';
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
 
@@ -20,9 +19,21 @@ const DataHasilKeputusan = () => {
     }
 
     useEffect(() => {
-        getPerhitunganData((res) => {
-            setPenilaian(res.data.data.perangkingan)
-        })
+        const username = localStorage.getItem('username')
+        const handleGetDataOnMounted = async () => {
+            try {
+                const res = await getPerhitunganData(username)
+                if (res?.data?.status === 'success') {
+                    setPenilaian(res.data.data.perangkingan)
+                }
+                
+                throw res
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        if (username) handleGetDataOnMounted()
     }, [])
 
     const totalPages = Math.ceil(penilaian.length / entriesPerPage)
@@ -62,7 +73,7 @@ const DataHasilKeputusan = () => {
                                             </div>
                                             <div className='flex justify-end items-center text-[11px]'>
                                                 <div className='border flex items-center'>
-                                                   <SearchIcons />
+                                                    <SearchIcons />
                                                     <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                                 </div>
                                             </div>

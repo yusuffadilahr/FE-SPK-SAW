@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react';
 import ButtonCustom from '../../element/button/button'
-import { getPerhitunganData } from '../../../service/data.service'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
 
-const MenghitungNilaiPreferensi = () => {
+const MenghitungNilaiPreferensi = (props) => {
+    // eslint-disable-next-line react/prop-types
+    const { isNilaiPreferensi } = props
+
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(5)
-    const [isNilaiPreferensi, setIsNilaiPreferensi] = useState([])
 
-    useEffect(() => {
-        getPerhitunganData((res) => {
-            setIsNilaiPreferensi(res.data.data.hasil_preperensi)
-        })
-    })
-
-    const totalPagesPreferensi = Math.ceil(isNilaiPreferensi.length / entriesPerPage)
-    const paginatedPreferensi = isNilaiPreferensi.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
+    // eslint-disable-next-line react/prop-types
+    const totalPagesPreferensi = Math.ceil(isNilaiPreferensi?.length / entriesPerPage)
+    
+    // eslint-disable-next-line react/prop-types
+    const paginatedPreferensi = isNilaiPreferensi?.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
 
     const handlePageChange = (page) => {
         setCurrentPage(page)

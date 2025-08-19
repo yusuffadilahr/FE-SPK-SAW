@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import Aicons from '../../element/icons/AIcons'
 import Dicons from '../../element/icons/Dicons'
@@ -32,14 +32,27 @@ const Dashboard = () => {
     ]
 
     useEffect(() => {
-        getPerhitunganData((res) => {
-            setPenilaian(res.data.data.perangkingan)
-            if (res.data.statusCode === 400) {
-                alert(res.data.message)
-                alert('Harap isi data penilaian alternatif terlebih dahulu')
-                navigate('/penilaian-alternatif-admin')
+        const username = localStorage.getItem('username')
+        const handleGetDataOnMounted = async () => {
+            try {
+                const res = await getPerhitunganData(username)
+                if (res?.data?.status === 'success') {
+                    setPenilaian(res.data.data.perangkingan)
+                }
+
+                if (res.data.statusCode === 400) {
+                    alert(res.data.message)
+                    alert('Harap isi data penilaian alternatif terlebih dahulu')
+                    navigate('/penilaian-alternatif-admin')
+                }
+
+                throw res
+            } catch (error) {
+                console.log(error)
             }
-        })
+        }
+
+        if (username) handleGetDataOnMounted()
     }, [])
     const data = {
         labels: penilaian.map((item) => item.alternatif),

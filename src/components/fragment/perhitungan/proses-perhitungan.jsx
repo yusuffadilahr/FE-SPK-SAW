@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react';
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import { getPerhitunganData } from '../../../service/data.service'
@@ -14,17 +14,44 @@ const ProsesPerhitungan = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [dataProductThdKriteria, setDataProductThdKriteria] = useState([])
+    const [isHasilNormalisasi, setIsHasilNormaliasi] = useState([])
+    const [isPreferensi, setIsPreferensi] = useState([])
+    const [isMenghitungNormalisasi, setIsMenghitungNormalisasi] = useState([])
+    const [isNilaiPreferensi, setIsNilaiPreferensi] = useState([])
+
     const navigate = useNavigate()
 
     useEffect(() => {
-        getPerhitunganData((res) => {
-            setDataProductThdKriteria(res.data.data.data_product_terhadap_kriteria)
-            if (res.data.statusCode === 400) {
-                alert(res.data.message)
-                alert('Harap isi data penilaian alternatif terlebih dahulu')
-                navigate('/penilaian-alternatif-admin')
+        const username = localStorage.getItem('username')
+        const handleGetDataOnMounted = async () => {
+            try {
+                const res = await getPerhitunganData(username)
+                if (res?.data?.status === 'success') {
+                    const dataTotalPreperensi = res.data.data.total_preperensi.map(item => ({
+                        ...item,
+                        hasil: parseFloat(item.hasil)
+                    }));
+
+                    setIsPreferensi(dataTotalPreperensi)
+                    setDataProductThdKriteria(res.data.data.data_product_terhadap_kriteria)
+                    setIsHasilNormaliasi(res.data.data.hasil_normalisasi)
+                    setIsMenghitungNormalisasi(res.data.data.hasil_normalisasi)
+                    setIsNilaiPreferensi(res.data.data.hasil_preperensi)
+                }
+
+                if (res.data.statusCode === 400) {
+                    alert(res.data.message)
+                    alert('Harap isi data penilaian alternatif terlebih dahulu')
+                    navigate('/penilaian-alternatif-admin')
+                }
+
+                throw res
+            } catch (error) {
+                console.log(error)
             }
-        })
+        }
+
+        if (username) handleGetDataOnMounted()
     }, [])
 
     const totalPagesThdKriteria = Math.ceil(dataProductThdKriteria.length / entriesPerPage)
@@ -64,7 +91,7 @@ const ProsesPerhitungan = () => {
                                             </div>
                                             <div className='flex justify-end items-center text-[11px]'>
                                                 <div className='border flex items-center'>
-                                                <SearchIcons />
+                                                    <SearchIcons />
                                                     <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                                 </div>
                                             </div>
@@ -126,10 +153,10 @@ const ProsesPerhitungan = () => {
                             </div>
                         </div>
                     </div>
-                    <MenghitungDataNormalisasi />
-                    <HasilNormalisasi />
-                    <MenghitungNilaiPreferensi />
-                    <HasilPreferensi />
+                    <MenghitungDataNormalisasi isMenghitungNormalisasi={isMenghitungNormalisasi} />
+                    <HasilNormalisasi isHasilNormalisasi={isHasilNormalisasi} />
+                    <MenghitungNilaiPreferensi isNilaiPreferensi={isNilaiPreferensi} />
+                    <HasilPreferensi isPreferensi={isPreferensi} />
                 </div>
             </div>
         </Fragment>

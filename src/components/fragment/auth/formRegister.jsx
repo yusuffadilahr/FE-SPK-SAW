@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react';
 import ProfileIcons from '../../element/icons/profileIcons'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'

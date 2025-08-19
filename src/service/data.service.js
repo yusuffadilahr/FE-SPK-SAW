@@ -316,17 +316,14 @@ export const singleNilaiAlternatif = (id_alternatif, callback) => {
     }
 }
 
-export const getPerhitunganData = (callback) => {
-    axios.get(apiUrl + '/api-v1/kopi/proses-perhitungan', {
+export const getPerhitunganData = async (username) => {
+    const res = await axios.get(apiUrl + '/api-v1/kopi/proses-perhitungan', {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
             "username": username
         }
     })
-        .then((res) => {
-            callback(res)
-        }).catch((err) => {
-            console.error(err)
-        })
+
+    return res
 }
