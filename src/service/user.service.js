@@ -1,10 +1,11 @@
 import axios from "axios"
+import { apiUrl } from "./axios.instance"
 
 const usernameGet = localStorage.getItem('username')
 
 export const getUsers = (callback) => {
     try {
-        axios.get('http://localhost:4004/api-v1/users/admin', {
+        axios.get(apiUrl + '/api-v1/users/admin', {
             headers: {
                 "Content-Type": "application/json",
                 "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -21,7 +22,7 @@ export const getUsers = (callback) => {
 
 export const getUsernameByUsername = (username, callback) => {
     try {
-        axios.get(` http://localhost:4004/api-v1/users/admin/${username}`, {
+        axios.get(`apiUrl +  /api-v1/users/admin/${username}`, {
             headers: {
                 "Content-Type": "application/json",
                 "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -42,7 +43,7 @@ export const updateUsers = (username, callback) => {
         console.log("cek username params : ", username);
 
 
-        axios.put(`http://localhost:4004/api-v1/users/admin/${username}`, [], {
+        axios.put(apiUrl + `/api-v1/users/admin/${username}`, [], {
             headers: {
                 "Content-Type": "application/json",
                 "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -59,7 +60,7 @@ export const updateUsers = (username, callback) => {
 
 export const deleteDataUsers = (username, callback) => {
     try {
-        axios.delete(`http://localhost:4004/api-v1/users/admin/${username}`, {
+        axios.delete(apiUrl + `/api-v1/users/admin/${username}`, {
             headers: {
                 "Content-Type": "application/json",
                 "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",

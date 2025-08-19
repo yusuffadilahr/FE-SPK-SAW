@@ -1,7 +1,8 @@
 import axios from "axios"
+import { apiUrl } from "./axios.instance"
 
 export const Login = (data, callback) => {
-    axios.post('http://localhost:4004/api-v1/users/login', data, {
+    axios.post(apiUrl + '/api-v1/users/login', data, {
         headers: {
             "Content-Type": "application/json"
         }
@@ -13,7 +14,7 @@ export const Login = (data, callback) => {
 }
 
 export const Register = (data, callback) => {
-    axios.post('http://localhost:4004/api-v1/users/register', data, {
+    axios.post(apiUrl + '/api-v1/users/register', data, {
         headers: {
             "Content-Type": "application/json"
         }
@@ -33,7 +34,7 @@ export const Register = (data, callback) => {
 
 export const Logout = (data, callback) => {
     const username = localStorage.getItem('username')
-    axios.post('http://localhost:4004/api-v1/users/logout', data, {
+    axios.post(apiUrl + '/api-v1/users/logout', data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",

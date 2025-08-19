@@ -1,9 +1,10 @@
 import axios from "axios"
+import { apiUrl } from "./axios.instance"
 
 const username = localStorage.getItem('username')
 
 export const getAlternatifData = (callback) => {
-    axios.get('http://localhost:4004/api-v1/kopi/alternatif/', {
+    axios.get(apiUrl + '/api-v1/kopi/alternatif/', {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -20,7 +21,7 @@ export const getAlternatifData = (callback) => {
 }
 
 export const singleAlternatifData = (id_alternatif, callback) => {
-    axios.get(`http://localhost:4004/api-v1/kopi/alternatif/${id_alternatif}`, {
+    axios.get(apiUrl + `/api-v1/kopi/alternatif/${id_alternatif}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -34,7 +35,7 @@ export const singleAlternatifData = (id_alternatif, callback) => {
 }
 
 export const updateData = (id_alternatif, data, callback) => {
-    axios.put(`http://localhost:4004/api-v1/kopi/alternatif/${id_alternatif}`, data, {
+    axios.put(apiUrl + `/api-v1/kopi/alternatif/${id_alternatif}`, data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -54,7 +55,7 @@ export const updateData = (id_alternatif, data, callback) => {
 }
 
 export const addAlternatifData = (data, callback) => {
-    axios.post('http://localhost:4004/api-v1/kopi/alternatif', data, {
+    axios.post(apiUrl + '/api-v1/kopi/alternatif', data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -71,7 +72,7 @@ export const addAlternatifData = (data, callback) => {
 }
 
 export const deleteDataAlternatif = (id_alternatif, callback) => {
-    axios.delete(`http://localhost:4004/api-v1/kopi/alternatif/${id_alternatif}`, {
+    axios.delete(apiUrl + `/api-v1/kopi/alternatif/${id_alternatif}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -92,7 +93,7 @@ export const deleteDataAlternatif = (id_alternatif, callback) => {
 }
 
 export const deleteAlternatif = (id_alternatif, callback) => {
-    axios.delete(`http://localhost:4004/api-v1/kopi/alternatif/${id_alternatif}`, {
+    axios.delete(apiUrl + `/api-v1/kopi/alternatif/${id_alternatif}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -111,7 +112,7 @@ export const deleteAlternatif = (id_alternatif, callback) => {
 }
 
 export const getDataKriteria = (callback) => {
-    axios.get('http://localhost:4004/api-v1/kopi/kriteria', {
+    axios.get(apiUrl + '/api-v1/kopi/kriteria', {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -128,7 +129,7 @@ export const getDataKriteria = (callback) => {
 }
 
 export const createDataKriteria = (data, callback) => {
-    axios.post('http://localhost:4004/api-v1/kopi/kriteria', data, {
+    axios.post(apiUrl + '/api-v1/kopi/kriteria', data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -148,7 +149,7 @@ export const createDataKriteria = (data, callback) => {
 }
 
 export const getKriteriaById = (id_kriteria, callback) => {
-    axios.get(`http://localhost:4004/api-v1/kopi/kriteria/${id_kriteria}`, {
+    axios.get(apiUrl + `/api-v1/kopi/kriteria/${id_kriteria}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -165,7 +166,7 @@ export const getKriteriaById = (id_kriteria, callback) => {
 }
 
 export const updateDataKriteria = (id_kriteria, data, callback) => {
-    axios.put(`http://localhost:4004/api-v1/kopi/kriteria/${id_kriteria}`, data, {
+    axios.put(apiUrl + `/api-v1/kopi/kriteria/${id_kriteria}`, data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -186,7 +187,7 @@ export const updateDataKriteria = (id_kriteria, data, callback) => {
 }
 
 export const deleteDataKriteria = (id_kriteria, callback) => {
-    axios.delete(`http://localhost:4004/api-v1/kopi/kriteria/${id_kriteria}`, {
+    axios.delete(apiUrl + `/api-v1/kopi/kriteria/${id_kriteria}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -204,7 +205,7 @@ export const deleteDataKriteria = (id_kriteria, callback) => {
 }
 
 export const getPenilaianData = (callback) => {
-    axios.get('http://localhost:4004/api-v1/kopi/nilai-alternatif', {
+    axios.get(apiUrl + '/api-v1/kopi/nilai-alternatif', {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -220,7 +221,7 @@ export const getPenilaianData = (callback) => {
 }
 
 export const bulkCreatePenilaianData = (data, callback) => {
-    axios.post('http://localhost:4004/api-v1/kopi/bulk-nilai-alternatif', data, {
+    axios.post(apiUrl + '/api-v1/kopi/bulk-nilai-alternatif', data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -240,7 +241,7 @@ export const bulkCreatePenilaianData = (data, callback) => {
 }
 
 export const updatePenilaian = (data, id_nilai_alternatif, callback) => {
-    axios.put(`http://localhost:4004/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, data, {
+    axios.put(apiUrl + `/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, data, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -260,7 +261,7 @@ export const updatePenilaian = (data, id_nilai_alternatif, callback) => {
 }
 
 export const singleDataPenilaian = (id_nilai_alternatif, callback) => {
-    axios.get(`http://localhost:4004/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, {
+    axios.get(apiUrl + `/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -277,7 +278,7 @@ export const singleDataPenilaian = (id_nilai_alternatif, callback) => {
 
 
 export const deletePenilaianById = (id_nilai_alternatif, callback) => {
-    axios.delete(`http://localhost:4004/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, {
+    axios.delete(apiUrl + `/api-v1/kopi/nilai-alternatif/${id_nilai_alternatif}`, {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -298,7 +299,7 @@ export const deletePenilaianById = (id_nilai_alternatif, callback) => {
 
 export const singleNilaiAlternatif = (id_alternatif, callback) => {
     try {
-        axios.get(`http://localhost:4004/api-v1/kopi/nilai-alternatif/alternatif/${id_alternatif}`, {
+        axios.get(apiUrl + `/api-v1/kopi/nilai-alternatif/alternatif/${id_alternatif}`, {
             headers: {
                 "Content-Type": "application/json",
                 "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
@@ -316,7 +317,7 @@ export const singleNilaiAlternatif = (id_alternatif, callback) => {
 }
 
 export const getPerhitunganData = (callback) => {
-    axios.get('http://localhost:4004/api-v1/kopi/proses-perhitungan', {
+    axios.get(apiUrl + '/api-v1/kopi/proses-perhitungan', {
         headers: {
             "Content-Type": "application/json",
             "secret_key": "$awdaAdsnajsJybwauydnajsK131uhbakuO0dt",
