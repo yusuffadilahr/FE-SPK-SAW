@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 import ProfileIcons from '../../element/icons/profileIcons'
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import LockIcons from '../../element/icons/lockIcons'
 import { Login } from '../../../service/auth.service'
 import pp from '../../../assets/combucha.jpg'
 
 const FormLogin = () => {
   const [loginFail, setLoginFail] = useState('')
-  const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
 
     const data = {
@@ -20,38 +19,55 @@ const FormLogin = () => {
       password: e.target.password.value
     }
 
-    Login(data, (status, res) => {
-      if (status) {
-        const { role } = res.data
+    try {
+      const res = await Login(data)
+      if (res.data.status === 'success') {
+        const role = res.data.data.role
+
         if (role === "admin") {
           localStorage.setItem('username', data.username)
-          localStorage.setItem('role', res.data.role)
-          localStorage.setItem("secretKey", res.data.secret_key)
-          console.log("Kamu adalah admin", res.message)
+          localStorage.setItem('role', role)
+          localStorage.setItem("secretKey", res.data.data.secret_key)
+
           alert("Berhasil Login, Kamu adalah Admin!")
-          navigate('/dashboard-admin')
-          window.location.reload()
+
+          window.location.href = '/dashboard-admin'
+
+          return
         } else if (role === "user") {
           localStorage.setItem('username', data.username)
-          localStorage.setItem('role', res.data.role)
-          localStorage.setItem("secretKey", res.data.secret_key)
-          console.log("Kamu adalah user")
+          localStorage.setItem('role', res.data.data.role)
+          localStorage.setItem("secretKey", res.data.data.secret_key)
+
           alert("Berhasil Login!")
-          navigate('/dashboard-user')
-          window.location.reload()
-        } else {
-          setLoginFail(res.message)
-          alert('Role tidak dikenali')
-          localStorage.removeItem('username')
-          localStorage.removeItem('role')
-          localStorage.removeItem('secretKey')
-          console.log('Role tidak dikenali')
+          window.location.href = '/dashboard-user'
+
+          return
         }
-      } else {
-        setLoginFail(res.message)
       }
-    })
+
+      throw res
+    } catch (error) {
+      if (error.data.status === 'failed') {
+        alert(error.data.message || 'Gagal melakukan Login!')
+        setLoginFail('Gagal melakukan login!')
+
+        localStorage.removeItem('username')
+        localStorage.removeItem('role')
+        localStorage.removeItem('secretKey')
+
+        return
+      }
+
+      alert('Role tidak dikenali')
+      setLoginFail('Gagal melakukan login!')
+
+      localStorage.removeItem('username')
+      localStorage.removeItem('role')
+      localStorage.removeItem('secretKey')
+    }
   }
+
   return (
     <div className='w-full h-screen flex'>
       <div className='w-full h-full bg-red-50 flex justify-center items-center'>

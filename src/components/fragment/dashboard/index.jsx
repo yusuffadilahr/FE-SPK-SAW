@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import Aicons from '../../element/icons/AIcons'
 import Dicons from '../../element/icons/Dicons'
@@ -32,21 +32,38 @@ const Dashboard = () => {
     ]
 
     useEffect(() => {
-        getPerhitunganData((res) => {
-            setPenilaian(res.data.data.perangkingan)
-            if (res.data.statusCode === 400) {
-                alert(res.data.message)
-                alert('Harap isi data penilaian alternatif terlebih dahulu')
-                navigate('/penilaian-alternatif-admin')
+        const username = localStorage.getItem('username')
+        const handleGetDataOnMounted = async () => {
+            try {
+                const res = await getPerhitunganData(username)
+                if (res?.data?.status === 'success') {
+                    setPenilaian(res.data.data.perangkingan)
+                }
+
+                if (res.data.statusCode === 400) {
+                    alert(res.data.message)
+                    alert('Harap isi data penilaian alternatif terlebih dahulu')
+                    navigate('/penilaian-alternatif-admin')
+                }
+
+                throw res
+            } catch (error) {
+                console.log(error)
             }
-        })
+        }
+
+        if (username) handleGetDataOnMounted()
+
     }, [])
+
+    console.log(penilaian, '<< ini apaan')
+
     const data = {
-        labels: penilaian.map((item) => item.alternatif),
+        labels: penilaian?.map((item) => item.alternatif),
         datasets: [
             {
                 label: 'Hasil Penilaian',
-                data: penilaian.map((item) => item.hasil),
+                data: penilaian?.map((item) => item.hasil),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -77,7 +94,7 @@ const Dashboard = () => {
                     <h1>Tesss</h1>
                 </div>
                 <div className='w-5/6 h-screen left-0 top-0 bg-white pt-24 p-20'>
-                <div className='w-full bg-red-400 h-14 flex items-center justify-center'>
+                    <div className='w-full bg-red-400 h-14 flex items-center justify-center'>
                         <h1 className='text-2xl text-black'>Selamat Datang, <span className='font-bold'>{handleUser}!</span></h1>
                     </div>
                     <div className='w-full flex justify-center items-center'>

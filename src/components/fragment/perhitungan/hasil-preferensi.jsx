@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react';
 import ButtonCustom from '../../element/button/button'
-import { getPerhitunganData } from '../../../service/data.service'
 import Label from '../../element/form/label'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
 
-const HasilPreferensi = () => {
+const HasilPreferensi = (props) => {
+    // eslint-disable-next-line react/prop-types
+    const { isPreferensi } = props
+
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(5)
-    const [isPreferensi, setIsPreferensi] = useState([])
 
-    useEffect(() => {
-        getPerhitunganData((res) => {
-            const data = res.data.data.total_preperensi.map(item => ({
-                ...item,
-                hasil: parseFloat(item.hasil) 
-            }));
-            setIsPreferensi(data);
-        })
-    }, [])
+    // eslint-disable-next-line react/prop-types
+    const totalPagesHasilPreferensi = Math.ceil(isPreferensi?.length / entriesPerPage)
 
-    const totalPagesHasilPreferensi = Math.ceil(isPreferensi.length / entriesPerPage)
+    // eslint-disable-next-line react/prop-types
     const paginatedHasilPreferensi = isPreferensi.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
-    
+
     const handlePageChange = (page) => {
         setCurrentPage(page)
     }

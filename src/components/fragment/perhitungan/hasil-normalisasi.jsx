@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react';
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { getPerhitunganData } from '../../../service/data.service'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
 
-const HasilNormalisasi = () => {
+const HasilNormalisasi = (props) => {
+     // eslint-disable-next-line react/prop-types
+     const { isHasilNormalisasi } = props;
+     
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(5)
-    const [isHasilNormalisasi, setIsHasilNormaliasi] = useState([])
 
-    useEffect(() => {
-        getPerhitunganData((res) => {
-            setIsHasilNormaliasi(res.data.data.hasil_normalisasi)
-        })
-    }, [])
+    // eslint-disable-next-line react/prop-types
+    const totalPages = Math.ceil(isHasilNormalisasi?.length / entriesPerPage)
 
-    const totalPages = Math.ceil(isHasilNormalisasi.length / entriesPerPage)
-    const paginatedDataNormalisasi = isHasilNormalisasi.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
+    // eslint-disable-next-line react/prop-types
+    const paginatedDataNormalisasi = isHasilNormalisasi?.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
 
     const handlePageChange = (page) => {
         setCurrentPage(page)
@@ -43,7 +41,7 @@ const HasilNormalisasi = () => {
                             </div>
                             <div className='flex justify-end items-center text-[11px]'>
                                 <div className='border flex items-center'>
-                                  <SearchIcons />
+                                    <SearchIcons />
                                     <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                 </div>
                             </div>

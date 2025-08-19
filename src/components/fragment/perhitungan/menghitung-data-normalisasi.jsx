@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react';
 import ButtonCustom from '../../element/button/button'
 import Label from '../../element/form/label'
-import { getPerhitunganData } from '../../../service/data.service'
 import Input from '../../element/form/input'
 import SearchIcons from '../../element/icons/searchIcons'
 
-const MenghitungDataNormalisasi = () => {
+const MenghitungDataNormalisasi = (props) => {
+    // eslint-disable-next-line react/prop-types
+    const { isMenghitungNormalisasi } = props
+
     const [entriesPerPage, setEntriesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
-    const [isMenghitungNormalisasi, setIsMenghitungNormalisasi] = useState([])
 
-    useEffect(() => {
-        getPerhitunganData((res) => {
-            setIsMenghitungNormalisasi(res.data.data.hasil_normalisasi)
-        })
-    })
-
-    const totalPagesNormalisasi = Math.ceil(isMenghitungNormalisasi.length / entriesPerPage)
-    const paginatedDataNormalisasi = isMenghitungNormalisasi.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
+    // eslint-disable-next-line react/prop-types
+    const totalPagesNormalisasi = Math.ceil(isMenghitungNormalisasi?.length / entriesPerPage)
+    
+    // eslint-disable-next-line react/prop-types
+    const paginatedDataNormalisasi = isMenghitungNormalisasi?.slice((currentPage - 1) * entriesPerPage, currentPage * entriesPerPage)
 
     const handlePageChangeNormalisasi = (page) => {
         setCurrentPage(page)
@@ -43,7 +41,7 @@ const MenghitungDataNormalisasi = () => {
                             </div>
                             <div className='flex justify-end items-center text-[11px]'>
                                 <div className='border flex items-center'>
-                                   <SearchIcons/>
+                                    <SearchIcons />
                                     <Input edit='py-1 px-1 pl-2' border='text-slate' type='text' placeholder='Cari Data' />
                                 </div>
                             </div>

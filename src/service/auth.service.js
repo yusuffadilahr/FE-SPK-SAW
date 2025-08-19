@@ -1,16 +1,14 @@
 import axios from "axios"
 import { apiUrl } from "./axios.instance"
 
-export const Login = (data, callback) => {
-    axios.post(apiUrl + '/api-v1/users/login', data, {
+export const Login = async (data) => {
+    const res = await axios.post(apiUrl + '/api-v1/users/login', data, {
         headers: {
             "Content-Type": "application/json"
         }
-    }).then((res) => {
-        callback(true, res.data)
-    }).catch((error) => {
-        callback(false, error)
     })
+
+    return res
 }
 
 export const Register = (data, callback) => {
