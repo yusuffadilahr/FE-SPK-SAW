@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import PropTypes from 'prop-types';
+
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import LoginPage from './pages/auth/login'
 import DataAlternatifPage from './pages/data-alternatif/admin/index'
@@ -24,7 +26,6 @@ import DataHasilKeputusanPageUser from './pages/data-hasil-keputusan/user'
 import DashboardPage from './pages/dashboard'
 import DashboardUserPage from './pages/dashboard/dashboardUser'
 import UsersPage from './pages/user/admin'
-import { Link } from 'react-router-dom'
 import LandingPage from './pages/landingPage'
 
 const isLoggin = () => {
@@ -77,3 +78,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 )
+
+PrivatePageAdmin.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+PrivatePageUser.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+BackLoginAdmin.propTypes = {
+  children: PropTypes.node.isRequired,
+};

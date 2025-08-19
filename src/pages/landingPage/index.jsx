@@ -8,69 +8,66 @@ import { Link } from 'react-router-dom'
 const LandingPage = () => {
     return (
         <Fragment>
-            <nav className='top-0 w-full z-40 fixed flex h-20 items-center bg-white'>
-                <div className='grid grid-cols-2 w-full bg-white'>
-                    <div className='flex justify-start items-center pl-20'>
-                        <Link to='#'>
-                            <img src={pp} alt="Logo" className='w-32' />
-                        </Link>
-                    </div>
-                    <div className='flex justify-end pr-20 items-center w-full'>
+            {/* Navbar */}
+            <nav className='fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md shadow-sm'>
+                <div className='max-w-7xl mx-auto flex justify-between items-center px-8 h-20'>
+                    <Link to='#' className="flex items-center">
+                        <img src={pp} alt="Logo" className='w-28 hover:scale-105 transition-transform duration-300' />
+                    </Link>
+                    <div className='flex gap-3'>
                         <Link to='https://instagram.com/combuchacoffee'>
-                            <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 mr-1 hover:bg-red-800' text='text-red-800 hover:text-white'>Combucha Coffee</ButtonCustom>
+                            <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 px-4 py-2 hover:bg-red-800 transition-colors' text='text-red-800 hover:text-white text-sm font-medium'>Combucha Coffee</ButtonCustom>
                         </Link>
                         <Link to='/login'>
-                            <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 mr-1 hover:bg-red-800' text='text-red-800 hover:text-white'>Login</ButtonCustom>
+                            <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 px-4 py-2 hover:bg-red-800 transition-colors' text='text-red-800 hover:text-white text-sm font-medium'>Login</ButtonCustom>
                         </Link>
                         <Link to='/register'>
-                            <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 mr-1 hover:bg-red-800' text='text-red-800 hover:text-white'>Regirster</ButtonCustom>
+                            <ButtonCustom bulat='rounded-full' color='bg-red-800 border border-red-800 px-4 py-2 hover:bg-red-700 transition-colors' text='text-white text-sm font-medium'>Register</ButtonCustom>
                         </Link>
                     </div>
                 </div>
             </nav>
-            <div className='flex bg-gradient-to-tr from-red-200 to-red-50  w-full h-screen justify-center items-center'>
-                <div className='grid grid-cols-2 w-full h-full'>
-                    {/* <div className='flex justify-start items-center w-1/2 h-full'>
-                        <img src={pp1} alt="" className='w-full ml-20 animate-fade-left' />
-                        <img src={pp2} alt="" className='z-10 absolute w-80 ml-96 animate-fade-up' />
+
+            {/* Hero Section */}
+            <section className='relative flex w-full min-h-screen items-center justify-center bg-gradient-to-tr from-red-100 via-white to-red-50 pt-20'>
+                <div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-8'>
+
+                    {/* Left - Image & Overlay Text */}
+                    <div className='relative flex justify-center items-center'>
+                        <img src={pp1} alt="" className='w-96 rounded-xl shadow-lg animate-fade-left' />
+                        <img src={pp2} alt="" className='absolute bottom-0 right-0 w-64 rounded-lg shadow-xl animate-fade-up' />
+                        <div className="absolute top-10 left-5 text-left">
+                            <h1 className='text-3xl md:text-5xl font-extrabold text-red-900 drop-shadow animate-fade-up'>COFFEE & ROASTERY</h1>
+                            <h2 className='text-lg md:text-2xl font-semibold text-gray-700 animate-fade-up delay-200'>Combucha Coffee</h2>
+                        </div>
                     </div>
-                    <div className='w-1/2 flex justify-center items-center h-full'>
-                        <h1>
-                            Sistem Pendukung Keputusan Kopi Terbaik Menggunakan Metode SAW
+
+                    {/* Right - Text Content */}
+                    <div className='flex flex-col justify-center items-start text-gray-900 space-y-4'>
+                        <h1 className='text-3xl md:text-4xl font-extrabold leading-tight'>
+                            Sistem Penunjang Keputusan <br />
+                            Pemilihan Biji Kopi <span className='text-red-800'>Combucha Coffee</span>
                         </h1>
-                    </div> */}
-                    <div className='flex justify-center items-center'>
-                        <img src={pp1} alt="" className='w-96 mr-32 pb-10 animate-fade-left' />
-                        <img src={pp2} alt="" className='z-10 absolute pt-72 w-80 ml-[300px] animate-fade-up' />
-                        <h1 className='absolute pb-[100px] pl-[450px] font-bold animate-fade-up'>COFFEE & ROASTERY</h1>
-                        <h1 className='absolute pt-[350px] pr-72 font-bold animate-fade-up'>COMBUCHA</h1>
-                        <h1 className='absolute pt-[380px] pr-72 text-xs animate-fade-up'>Coffee</h1>
-                    </div>
-                    <div className='flex justify-center items-center text-3xl z-20 font-bold'>
-                        <div className="grid grid-cols-1 text-center">
-                            {/* SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN
-BIJI KOPI PADA COMBUCHA COFFEE DENGAN METODE
-SIMPLE ADDITIVE WEIGHTING (SAW) */}
-                            <h1>Sistem Penunjang Keputusan</h1>
-                            <h1>Pemilihan Biji Kopi Pada Combucha Coffee</h1>
-                            <h1>Dengan Metode Simple Addictive Weighting (SAW)</h1>
-                            <div className='flex w-full pt-5 justify-center items-center'>
-                                <Link to='/login'>
-                                    <ButtonCustom bulat='rounded-full' color='bg-red-800 border border-red-800 mr-1 hover:bg-red-700 animate-bounce' text='text-white hover:text-white'>Sign In</ButtonCustom>
-                                </Link>
-                                <Link to='register'>
-                                    <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 mr-1 hover:bg-red-800  animate-bounce' text='text-red-800 hover:text-white'>Sign Up</ButtonCustom>
-                                </Link>
-                            </div>
+                        <p className='text-base md:text-lg text-gray-600 leading-relaxed'>
+                            Mendukung pemilihan biji kopi terbaik menggunakan metode 
+                            <span className="font-semibold"> Simple Additive Weighting (SAW)</span>.
+                        </p>
+                        <div className='flex gap-3 pt-4'>
+                            <Link to='/login'>
+                                <ButtonCustom bulat='rounded-full' color='bg-red-800 border border-red-800 px-6 py-2 hover:bg-red-700 animate-pulse' text='text-white text-base font-semibold'>Sign In</ButtonCustom>
+                            </Link>
+                            <Link to='/register'>
+                                <ButtonCustom bulat='rounded-full' color='bg-transparent border border-red-800 px-6 py-2 hover:bg-red-800 animate-pulse' text='text-red-800 hover:text-white text-base font-semibold'>Sign Up</ButtonCustom>
+                            </Link>
                         </div>
                     </div>
                 </div>
-            </div>
-            <footer>
-                <div className='w-full h-5 bottom-0 bg-white absolute'>
-                    <div className='flex justify-center items-center w-full h-full'>
-                    <h1 className='text-[8px] text-red-900'>Copyright @ 2024</h1>
-                    </div>
+            </section>
+
+            {/* Footer */}
+            <footer className='w-full py-4 bg-white shadow-inner'>
+                <div className='flex justify-center items-center'>
+                    <p className='text-xs text-gray-600'>© 2024 Combucha Coffee. All rights reserved.</p>
                 </div>
             </footer>
         </Fragment>
